@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\node_modules"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\events-for-day",
+    "\\src\\app\\events-for-day\\event-input",
+    "\\src\\app\\homework",
+    "\\src\\assets"
   ],
-  "SelectedNode": "\\node_modules\\brace-expansion",
+  "SelectedNode": "\\src\\app\\events-for-day\\events-for-day.component.ts",
   "PreviewInSolutionExplorer": false
 }

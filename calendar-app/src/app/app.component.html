@@ -1,29 +1,38 @@
 <div class="container-fluid">
-  <div class="row text-center">
-    <div class="col-md-2 offset-md-1">
-      <h3 class="display-4">Monday</h3>
-      <events-for-day></events-for-day>
-      <homework></homework>
+  <form [formGroup]="eventsForm" (ngSubmit)="onSubmit()">
+    <div class="row text-center">
+      <div formGroupName="mondayEvents"
+           class="col-md-2 offset-md-1">
+        <h3 class="display-4">Monday</h3>
+        <events-for-day [eventsInDay]="eventsForm"
+                        day="monday"></events-for-day>
+        <homework [eventsForm]="eventsFor"
+                  day="monday"></homework>
+      </div>
+      <div formGroupName="tuesdayEvents"
+           class="col-md-2">
+        <h3 class="display-4">Tuesday</h3>
+        <events-for-day day="tuesday"></events-for-day>
+        <homework day="tuesday"></homework>
+      </div>
+      <div formGroupName="wednesdayEvents"
+           class="col-md-2">
+        <h3 class="display-4">Wednesday</h3>
+        <events-for-day day="wednesday"></events-for-day>
+        <homework day="wednesday"></homework>
+      </div>
+      <div formGroupName="thursdayEvents"
+           class="col-md-2">
+        <h3 class="display-4">Thursday</h3>
+        <events-for-day day="thursday"></events-for-day>
+        <homework day="thursday"></homework>
+      </div>
+      <div formGroupName="fridayEvents"
+           class="col-md-2">
+        <h3 class="display-4">Friday</h3>
+        <events-for-day day="friday"></events-for-day>
+        <homework day="friday"></homework>
+      </div>
     </div>
-    <div class="col-md-2">
-      <h3 class="display-4">Tuesday</h3>
-      <events-for-day></events-for-day>
-      <homework></homework>
-    </div>
-    <div class="col-md-2">
-      <h3 class="display-4">Wednesday</h3>
-      <events-for-day></events-for-day>
-      <homework></homework>
-    </div>
-    <div class="col-md-2">
-      <h3 class="display-4">Thursday</h3>
-      <events-for-day></events-for-day>
-      <homework></homework>
-    </div>
-    <div class="col-md-2">
-      <h3 class="display-4">Friday</h3>
-      <events-for-day></events-for-day>
-      <homework></homework>
-    </div>
-  </div>
+  </form>
 </div>

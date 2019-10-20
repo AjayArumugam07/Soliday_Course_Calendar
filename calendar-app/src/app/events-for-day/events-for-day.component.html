@@ -1,12 +1,32 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-body"
+       formArrayName="eventsInDay.mondayEvents.classwork">
     <h3>Classwork</h3>
     <hr />
-    <div class="text-center">
-      <a href=#>
-        <img src="assets/AddEvent.png">
-      </a>
 
+    <div class="form-group" ,
+         *ngFor="let event of eventsInDay.get('classwork').controls; let i = index">
+
+      <div class="row">
+        <div class="col-md-1">
+          <h5> {{ i }}</h5>
+        </div>
+        <div class="col-md-10">
+          <textarea
+          class="form-control"
+                    [formControlName]="day + i"></textarea>
+        </div>
+
+      </div>
+      <hr />
+
+    </div>
+  
+
+    <div class="text-center">
+      <button type="button" (Click)="addTextArea()">
+        <img src="assets/AddEvent.png">
+      </button>
     </div>
   </div>
 </div>

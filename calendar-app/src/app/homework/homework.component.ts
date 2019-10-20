@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'homework',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeworkComponent implements OnInit {
 
-  constructor() { }
+  @Input() eventsForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
+
 
   ngOnInit() {
   }

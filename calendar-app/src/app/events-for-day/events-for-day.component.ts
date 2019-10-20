@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'events-for-day',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsForDayComponent implements OnInit {
 
-  constructor() { }
+  day: string;
+  @Input() eventsInDay: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    
+  }
+
+  addTextArea() {
+    (<FormArray>this.eventsInDay.get('mondayEvents.classwork')).push(new FormControl(null));
   }
 
 }
