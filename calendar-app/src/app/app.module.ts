@@ -4,15 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EventsForDayComponent } from './events-for-day/events-for-day.component';
-import { HomeworkComponent } from './homework/homework.component';
-import { EventInputComponent } from './events-for-day/event-input/event-input.component';
+import { capitalizeFirstLetter } from 'src/Pipes/capitalizeFirstLetter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsForDayComponent,
-    HomeworkComponent,
-    EventInputComponent
+    capitalizeFirstLetter
   ],
   imports: [
     BrowserModule,

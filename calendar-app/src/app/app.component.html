@@ -5,41 +5,55 @@
            class="col-md-2 offset-md-1">
         <h3 class="display-4">Monday</h3>
         <events-for-day [eventsInDay]="eventsForm"
+                        eventType="classwork"
                         day="monday"></events-for-day>
-        <homework [eventsForm]="eventsForm"
-                  day="monday"></homework>
+        <events-for-day [eventsInDay]="eventsForm"
+                        eventType="homework"
+                        day="monday"></events-for-day>
       </div>
 
       <div formGroupName="tuesdayEvents"
            class="col-md-2">
         <h3 class="display-4">Tuesday</h3>
         <events-for-day [eventsInDay]="eventsForm"
+                        eventType="classwork"
                         day="tuesday"></events-for-day>
-        <homework day="tuesday"></homework>
+        <events-for-day [eventsInDay]="eventsForm"
+                        eventType="homework"
+                        day="tuesday"></events-for-day>
       </div>
 
       <div formGroupName="wednesdayEvents"
            class="col-md-2">
         <h3 class="display-4">Wednesday</h3>
         <events-for-day [eventsInDay]="eventsForm"
+                        eventType="classwork"
                         day="wednesday"></events-for-day>
-        <homework day="wednesday"></homework>
+        <events-for-day [eventsInDay]="eventsForm"
+                        eventType="homework"
+                        day="wednesday"></events-for-day>
       </div>
 
       <div formGroupName="thursdayEvents"
            class="col-md-2">
         <h3 class="display-4">Thursday</h3>
         <events-for-day [eventsInDay]="eventsForm"
+                        eventType="classwork"
                         day="thursday"></events-for-day>
-        <homework day="thursday"></homework>
+        <events-for-day [eventsInDay]="eventsForm"
+                        eventType="homework"
+                        day="thursday"></events-for-day>
       </div>
 
       <div formGroupName="fridayEvents"
            class="col-md-2">
         <h3 class="display-4">Friday</h3>
         <events-for-day [eventsInDay]="eventsForm"
+                        eventType="classwork"
                         day="friday"></events-for-day>
-        <homework day="friday"></homework>
+        <events-for-day [eventsInDay]="eventsForm"
+                        eventType="homework"
+                        day="friday"></events-for-day>
       </div>
     </div>
   </form>

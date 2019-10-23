@@ -1,16 +1,16 @@
 <div class="card">
   <div class="card-body">
-    <h3>Classwork</h3>
+    <h3>{{ eventType | capitalizeFirstLetter }}</h3>
     <hr />
     <form [formGroup]="eventsInDay">
       <div class="form-group"
-           *ngFor="let controls of eventsInDay.get(day + 'Events.classwork').controls; let i = index">
+           *ngFor="let controls of eventsInDay.get(day + 'Events.' + eventType).controls; let i = index">
         <div class="row"
              [formGroupName]="day + 'Events'">
           <div class="col-md-1">
             <h5> {{ i + 1 }}</h5>
           </div>
-          <div formArrayName="classwork"
+          <div [formArrayName]="eventType"
                class="col-md-10">
             <textarea class="form-control"
                       [formControlName]="i"></textarea>
