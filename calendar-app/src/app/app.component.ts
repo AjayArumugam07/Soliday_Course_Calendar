@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,33 +9,42 @@ import { FormGroup, FormArray } from '@angular/forms';
 export class AppComponent implements OnInit {
   title = 'calendar-app';
   eventsForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
+
   ngOnInit() {
-    this.eventsForm = new FormGroup({
-      'mondayEvents': new FormGroup({
-        'classwork': new FormArray([]),
-        'homework': new FormArray([])
+    this.eventsForm = this.fb.group({
+      'mondayEvents': this.fb.group({
+        'classwork': this.fb.array([]),
+        'homework': this.fb.array([])
       }),
-      'tuesdayEvents': new FormGroup({
-        'classwork': new FormArray([]),
-        'homework': new FormArray([])
+      'tuesdayEvents': this.fb.group({
+        'classwork': this.fb.array([]),
+        'homework': this.fb.array([])
       }),
-      'wednesdayEvents': new FormGroup({
-        'classwork': new FormArray([]),
-        'homework': new FormArray([])
+      'wednesdayEvents': this.fb.group({
+        'classwork': this.fb.array([]),
+        'homework': this.fb.array([])
       }),
-      'thursdayEvents': new FormGroup({
-        'classwork': new FormArray([]),
-        'homework': new FormArray([])
+      'thursdayEvents': this.fb.group({
+        'classwork': this.fb.array([]),
+        'homework': this.fb.array([])
       }),
-      'fridayEvents': new FormGroup({
-        'classwork': new FormArray([]),
-        'homework': new FormArray([])
+      'fridayEvents': this.fb.group({
+        'classwork': this.fb.array([]),
+        'homework': this.fb.array([])
       })
 
     })
+
+  //  this.eventsForm.valueChanges.subscribe(newVal => console.log(newVal))
   }
 
   onSubmit() {
 
+  }
+
+  hit() {
+    console.log(this.eventsForm);
   }
 }

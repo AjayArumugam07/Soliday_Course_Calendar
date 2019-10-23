@@ -8,17 +8,16 @@ import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 })
 export class EventsForDayComponent implements OnInit {
 
-  day: string;
+  @Input() day: string;
   @Input() eventsInDay: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    
   }
 
   addTextArea() {
-    (<FormArray>this.eventsInDay.get('mondayEvents.classwork')).push(new FormControl(null));
+    (<FormArray>this.eventsInDay.get(this.day + 'Events.classwork')).push(new FormControl(null));
   }
 
 }

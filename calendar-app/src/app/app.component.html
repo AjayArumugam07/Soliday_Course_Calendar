@@ -6,33 +6,44 @@
         <h3 class="display-4">Monday</h3>
         <events-for-day [eventsInDay]="eventsForm"
                         day="monday"></events-for-day>
-        <homework [eventsForm]="eventsFor"
+        <homework [eventsForm]="eventsForm"
                   day="monday"></homework>
       </div>
+
       <div formGroupName="tuesdayEvents"
            class="col-md-2">
         <h3 class="display-4">Tuesday</h3>
-        <events-for-day day="tuesday"></events-for-day>
+        <events-for-day [eventsInDay]="eventsForm"
+                        day="tuesday"></events-for-day>
         <homework day="tuesday"></homework>
       </div>
+
       <div formGroupName="wednesdayEvents"
            class="col-md-2">
         <h3 class="display-4">Wednesday</h3>
-        <events-for-day day="wednesday"></events-for-day>
+        <events-for-day [eventsInDay]="eventsForm"
+                        day="wednesday"></events-for-day>
         <homework day="wednesday"></homework>
       </div>
+
       <div formGroupName="thursdayEvents"
            class="col-md-2">
         <h3 class="display-4">Thursday</h3>
-        <events-for-day day="thursday"></events-for-day>
+        <events-for-day [eventsInDay]="eventsForm"
+                        day="thursday"></events-for-day>
         <homework day="thursday"></homework>
       </div>
+
       <div formGroupName="fridayEvents"
            class="col-md-2">
         <h3 class="display-4">Friday</h3>
-        <events-for-day day="friday"></events-for-day>
+        <events-for-day [eventsInDay]="eventsForm"
+                        day="friday"></events-for-day>
         <homework day="friday"></homework>
       </div>
     </div>
   </form>
 </div>
+
+<button type="button"
+        (click)="hit()">Click</button>
