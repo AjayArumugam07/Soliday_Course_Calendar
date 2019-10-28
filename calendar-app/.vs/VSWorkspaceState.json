@@ -3,11 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\events-for-day",
-    "\\src\\app\\events-for-day\\event-input",
-    "\\src\\app\\homework",
-    "\\src\\assets"
+    "\\src\\assets",
+    "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\homework\\homework.component.ts",
+  "SelectedNode": "\\src\\index.html",
   "PreviewInSolutionExplorer": false
 }

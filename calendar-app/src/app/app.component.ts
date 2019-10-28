@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Calendar } from './calendar.model';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,8 @@ export class AppComponent implements OnInit {
   title = 'calendar-app';
   eventsForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.eventsForm = this.fb.group({
@@ -44,7 +47,9 @@ export class AppComponent implements OnInit {
 
   }
 
-  hit() {
-    console.log(this.eventsForm);
+
+  onCreatePost(calendarData) {
+    this.http.post<Calendar>('https://app-calendar-65dc1.firebaseio.com/posts.json', calendarData
+    ).subscribe(responseData => {});
   }
 }
