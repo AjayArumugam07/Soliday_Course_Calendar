@@ -3,9 +3,10 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\dashboard-body",
     "\\src\\assets",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\index.html",
+  "SelectedNode": "\\src\\app\\dashboard-body\\dashboard-body.component.css",
   "PreviewInSolutionExplorer": false
 }

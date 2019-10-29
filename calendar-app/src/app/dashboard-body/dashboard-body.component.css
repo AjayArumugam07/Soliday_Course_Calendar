@@ -1,0 +1,15 @@
+.row{
+  margin-top: 50px;
+}
+
+.btn-primary {
+  margin-top: 40px;
+  font-family: Arial;
+  font-size: 13px;
+  color: #13293D;
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid #13293D;
+  border-radius: 40px;
+  background: transparent;
+}
