@@ -4,9 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\dashboard-body",
+    "\\src\\app\\dashboard-body\\card-calendar",
     "\\src\\assets",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\dashboard-body\\dashboard-body.component.css",
+  "SelectedNode": "\\src\\app\\dashboard-body\\card-calendar\\card-calendar.component.html",
   "PreviewInSolutionExplorer": false
 }
