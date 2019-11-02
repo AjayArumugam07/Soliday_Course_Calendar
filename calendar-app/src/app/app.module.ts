@@ -15,11 +15,10 @@ import { DashboardBodyComponent } from './dashboard-body/dashboard-body.componen
 import { Routes, RouterModule } from '@angular/router';
 import { CardCalendarComponent } from './dashboard-body/card-calendar/card-calendar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthComponent } from './auth/auth.component';
 
 
-const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardBodyComponent } 
-];
 
 @NgModule({
   declarations: [
@@ -29,18 +28,19 @@ const appRoutes: Routes = [
     CalendarEditComponent,
     HeaderComponent,
     DashboardBodyComponent,
-    CardCalendarComponent
+    CardCalendarComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
