@@ -8,6 +8,6 @@
     "\\src\\assets",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\dashboard-body\\card-calendar\\card-calendar.component.ts",
   "PreviewInSolutionExplorer": false
 }

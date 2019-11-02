@@ -1,0 +1,16 @@
+.card {
+  height: 250px;
+  padding: 55px;
+}
+mat-icon {
+  color: darkslateblue
+}
+
+.card-body {
+  text-align: center;
+  vertical-align:central;
+  padding: 25px;
+}
+
+button {
+}

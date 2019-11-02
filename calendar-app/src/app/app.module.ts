@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { EventsForDayComponent } from './calendar-edit/events-for-day/events-for-day.component';
@@ -12,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardBodyComponent } from './dashboard-body/dashboard-body.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CardCalendarComponent } from './dashboard-body/card-calendar/card-calendar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const appRoutes: Routes = [
@@ -34,7 +37,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
