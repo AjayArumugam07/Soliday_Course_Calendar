@@ -1,27 +1,56 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-  <form>
-    <div class="form-group">
-      <label for="email">E-Mail</label>
-      <input type="email" id="email" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" class="form-control" />
-    </div>
+      <form [formGroup]="accountCreationForm" (ngSubmit)="onAccountCreation(accountCreationForm.value)" *ngIf="!isLoginMode">
+        <div class="form-group">
+          <label class="heading" for="email">E-Mail</label>
+          <input type="email" id="email" class="form-control" [formControlName]="'emailCreation'" />
+        </div>
+        <div class="form-group">
+          <label class="heading" for="password">Password</label>
+          <input type="password" id="password" class="form-control" formControlName="passwordCreation" />
+        </div>
+        <div class="form-group">
+          <label class="heading" for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPasswordCreation" />
+        </div>
+        <div>
+          <label class="heading">Are you a Student or a Teacher?</label>
+          <div class="radio" *ngFor="let profession of professions">
+            <label>
+              <input type="radio" [value]="profession" formControlName="profession" /> {{ profession }}
+            </label>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-primary"
+                  type="submit">
+            Login
+          </button>
+        </div>
+      </form>
 
-    <div>
-      <button class="btn btn-primary"
-              type="submit">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
-
+      <form [formGroup]="authenticationForm" (ngSubmit)="onAuthentication(authenticationForm.value)" *ngIf="isLoginMode">
+        <div class="form-group">
+          <label class="heading" for="email">E-Mail</label>
+          <input type="email" id="email" class="form-control" [formControlName]="'emailAuthentication'" />
+        </div>
+        <div class="form-group">
+          <label class="heading" for="password">Password</label>
+          <input type="password" id="password" class="form-control" formControlName="passwordAuthentication" />
+        </div>
+        <div>
+          <button class="btn btn-primary"
+                  type="submit">
+            SignUp
+          </button>
+        </div>
+      </form>
       <button class="btn btn-primary"
               type="button"
               (click)="onSwitchMode()">
         Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
       </button>
     </div>
-  </form>
-</div>
   </div>
 </div>

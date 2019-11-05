@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\e2e",
+    "\\e2e\\src",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\dashboard-body",
-    "\\src\\app\\dashboard-body\\card-calendar",
+    "\\src\\app\\auth",
+    "\\src\\app\\calendar-edit",
+    "\\src\\app\\header",
     "\\src\\assets",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\dashboard-body\\card-calendar\\card-calendar.component.ts",
+  "SelectedNode": "\\src\\app\\auth\\auth.component.ts",
   "PreviewInSolutionExplorer": false
 }

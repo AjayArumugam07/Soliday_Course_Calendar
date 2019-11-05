@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -13,9 +14,34 @@ export class AuthComponent implements OnInit {
         this.isLoginMode = !this.isLoginMode;
     }
 
-  constructor() { }
+    authenticationForm: FormGroup;
+    accountCreationForm: FormGroup;
+    professions = ['Student', 'Teacher'];
 
-  ngOnInit() {
-  }
+    constructor(private fb: FormBuilder) {}
 
+    ngOnInit() {
+        this.authenticationForm = this.fb.group({
+            'emailAuthentication': this.fb.control(null),
+            'passwordAuthentication': this.fb.control(null)
+        })
+
+        this.accountCreationForm = this.fb.group({
+            'emailCreation': this.fb.control(null),
+            'passwordCreation': this.fb.control(null),
+            'confirmPasswordCreation': this.fb.control(null),
+            'profession': this.fb.control(null)
+        })
+
+        //  this.eventsForm.valueChanges.subscribe(newVal => console.log(newVal))
+    }
+
+
+    onAccountCreation(signUpData) {
+        console.log(signUpData);
+    }
+
+    onAuthentication(authenticationInfo) {
+        console.log(authenticationInfo);
+    }
 }
