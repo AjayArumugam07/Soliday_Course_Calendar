@@ -17,6 +17,8 @@ import { CardCalendarComponent } from './dashboard-body/card-calendar/card-calen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinner.component';
+
 
 
 
@@ -29,7 +31,8 @@ import { AuthComponent } from './auth/auth.component';
     HeaderComponent,
     DashboardBodyComponent,
     CardCalendarComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

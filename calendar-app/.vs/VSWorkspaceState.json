@@ -1,16 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\e2e",
-    "\\e2e\\src",
     "\\src",
     "\\src\\app",
     "\\src\\app\\auth",
     "\\src\\app\\calendar-edit",
+    "\\src\\app\\calendar-edit\\events-for-day",
     "\\src\\app\\header",
+    "\\src\\app\\Shared",
+    "\\src\\app\\Shared\\loading-spinner",
     "\\src\\assets",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\auth\\auth.component.ts",
+  "SelectedNode": "\\src\\app\\auth\\user.model.ts",
   "PreviewInSolutionExplorer": false
 }

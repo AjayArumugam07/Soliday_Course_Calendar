@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,6 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AuthComponent implements OnInit {
 
     isLoginMode = true;
+    isLoading = false;
+    error: string = null;
 
     onSwitchMode() {
         this.isLoginMode = !this.isLoginMode;
@@ -18,7 +21,7 @@ export class AuthComponent implements OnInit {
     accountCreationForm: FormGroup;
     professions = ['Student', 'Teacher'];
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private authSerivce: AuthService) { }
 
     ngOnInit() {
         this.authenticationForm = this.fb.group({
@@ -38,10 +41,44 @@ export class AuthComponent implements OnInit {
 
 
     onAccountCreation(signUpData) {
+        if (!this.accountCreationForm.valid) {
+            return;
+        }
+
+        this.isLoading = true;
         console.log(signUpData);
+        const email = signUpData.emailCreation;
+        const password = signUpData.passwordCreation;
+        this.authSerivce.signup(email, password).subscribe(
+        resData => {
+                console.log(resData);
+                this.isLoading = false;
+        },
+        error => {
+            console.log(error);
+            this.error = 'An error occured';
+            this.isLoading = false;
+        });
+        this.accountCreationForm.reset();
     }
 
     onAuthentication(authenticationInfo) {
-        console.log(authenticationInfo);
+        if (!this.authenticationForm.valid) {
+            return;
+        }
+
+        this.isLoading = true;
+        const email = authenticationInfo.emailAuthentication;
+        const password = authenticationInfo.passwordAuthentication;
+        this.authSerivce.login(email, password).subscribe(
+            resData => {
+                console.log(resData);
+                this.isLoading = false;
+            },
+            error => {
+                console.log(error);
+                this.error = 'An error occured';
+                this.isLoading = false;
+            });
     }
 }
