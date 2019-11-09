@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -21,7 +22,7 @@ export class AuthComponent implements OnInit {
     accountCreationForm: FormGroup;
     professions = ['Student', 'Teacher'];
 
-    constructor(private fb: FormBuilder, private authSerivce: AuthService) { }
+    constructor(private fb: FormBuilder, private authSerivce: AuthService, private router: Router, private elementRef: ElementRef) { }
 
     ngOnInit() {
         this.authenticationForm = this.fb.group({
@@ -53,6 +54,7 @@ export class AuthComponent implements OnInit {
         resData => {
                 console.log(resData);
                 this.isLoading = false;
+                this.router.navigate(['/dashboard']);
         },
         error => {
             console.log(error);
@@ -74,11 +76,16 @@ export class AuthComponent implements OnInit {
             resData => {
                 console.log(resData);
                 this.isLoading = false;
+                this.router.navigate(['/dashboard']);
             },
             error => {
                 console.log(error);
                 this.error = 'An error occured';
                 this.isLoading = false;
             });
+    }
+
+    ngAfterViewInit() {
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#13293D';
     }
 }

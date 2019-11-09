@@ -6,3 +6,7 @@ button {
 .heading{
   font-weight: bold;
 }
+
+.card{
+  padding: 50px 10px
+}
