@@ -36,10 +36,7 @@ export class AuthComponent implements OnInit {
             'confirmPasswordCreation': this.fb.control(null),
             'profession': this.fb.control(null)
         })
-
-        //  this.eventsForm.valueChanges.subscribe(newVal => console.log(newVal))
     }
-
 
     onAccountCreation(signUpData) {
         if (!this.accountCreationForm.valid) {
@@ -47,12 +44,10 @@ export class AuthComponent implements OnInit {
         }
 
         this.isLoading = true;
-        console.log(signUpData);
         const email = signUpData.emailCreation;
         const password = signUpData.passwordCreation;
         this.authSerivce.signup(email, password).subscribe(
         resData => {
-                console.log(resData);
                 this.isLoading = false;
                 this.router.navigate(['/dashboard']);
         },
@@ -74,7 +69,6 @@ export class AuthComponent implements OnInit {
         const password = authenticationInfo.passwordAuthentication;
         this.authSerivce.login(email, password).subscribe(
             resData => {
-                console.log(resData);
                 this.isLoading = false;
                 this.router.navigate(['/dashboard']);
             },

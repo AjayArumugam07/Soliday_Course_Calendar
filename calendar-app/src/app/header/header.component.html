@@ -13,7 +13,7 @@
 
   <span class="navbar-text" *ngIf="isAuthenticated">Welcome to Creator Dashboard!</span>
   <div class="nav navbar-nav">
-    <a class="nav-item nav-link" routerLink="" *ngIf="isAuthenticated">Logout</a>
+    <a class="nav-item nav-link" routerLink="" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
     <a class="nav-item nav-link" routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
   </div>
 </nav>
