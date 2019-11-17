@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { userInformation } from '../Shared/user-Information.model';
 
 @Component({
   selector: 'app-auth',
@@ -22,7 +24,7 @@ export class AuthComponent implements OnInit {
     accountCreationForm: FormGroup;
     professions = ['Student', 'Teacher'];
 
-    constructor(private fb: FormBuilder, private authSerivce: AuthService, private router: Router, private elementRef: ElementRef) { }
+    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private elementRef: ElementRef, private http: HttpClient) { }
 
     ngOnInit() {
         this.authenticationForm = this.fb.group({
@@ -46,10 +48,16 @@ export class AuthComponent implements OnInit {
         this.isLoading = true;
         const email = signUpData.emailCreation;
         const password = signUpData.passwordCreation;
-        this.authSerivce.signup(email, password).subscribe(
-        resData => {
-                this.isLoading = false;
-                this.router.navigate(['/dashboard']);
+        this.authService.signup(email, password).subscribe(
+            resData => {
+                this.authService.login(email, password).subscribe(
+                    resData => {
+                        this.isLoading = false;
+                        console.log(this.authService.currentUser.token);
+                        this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/.json?auth=' + this.authService.currentUser.token,
+                            new userInformation(this.authService.currentUser.id, 'email')
+                        ).subscribe(responseData => { this.router.navigate(['/dashboard']);});
+                    })
         },
         error => {
             console.log(error);
@@ -67,7 +75,7 @@ export class AuthComponent implements OnInit {
         this.isLoading = true;
         const email = authenticationInfo.emailAuthentication;
         const password = authenticationInfo.passwordAuthentication;
-        this.authSerivce.login(email, password).subscribe(
+        this.authService.login(email, password).subscribe(
             resData => {
                 this.isLoading = false;
                 this.router.navigate(['/dashboard']);

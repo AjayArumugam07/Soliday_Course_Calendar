@@ -21,6 +21,7 @@ interface AuthReponseData {
 export class AuthService {
 
     user = new BehaviorSubject<User>(null);
+    currentUser: User;
     private tokenExpirationTimer: any;
 
     constructor(private http: HttpClient, private router: Router) { }
@@ -33,17 +34,19 @@ export class AuthService {
                 email: email,
                 password: password,
                 returnSecureToken: true
-            });
+            })
+
+
     }
 
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        const user = new User(email, userId, token, expirationDate);
-        this.user.next(user);
-        localStorage.setItem('userData', JSON.stringify(user));
+        this.currentUser = new User(email, userId, token, expirationDate);
+        this.user.next(this.currentUser);
+        localStorage.setItem('userData', JSON.stringify(this.currentUser));
         this.autoLogout(expiresIn * 1000);
-        console.log(user);
-
+        console.log(this.currentUser);
+        
     }
 
     login(email: string, password: string) {
@@ -55,6 +58,7 @@ export class AuthService {
             })
             .pipe(tap(resData => {
                 this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+               // return resData.localId;
             }));
     }
 
@@ -92,4 +96,5 @@ export class AuthService {
             this.logout();
         }, expirationDuration);
     }
+
 }
