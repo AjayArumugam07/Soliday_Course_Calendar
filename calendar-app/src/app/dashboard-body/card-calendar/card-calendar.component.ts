@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'card-calendar',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardCalendarComponent implements OnInit {
 
-  constructor() { }
+    constructor(private router: Router) { }
+
+    onAddCalendarClick() {
+        console.log("clijsdf");
+        this.router.navigate(['/editCalendar'])
+    }
 
   ngOnInit() {
   }

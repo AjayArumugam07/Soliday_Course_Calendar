@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { userInformation } from '../Shared/user-Information.model';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-auth',
@@ -24,7 +25,7 @@ export class AuthComponent implements OnInit {
     accountCreationForm: FormGroup;
     professions = ['Student', 'Teacher'];
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private elementRef: ElementRef, private http: HttpClient) { }
+    constructor(private db: AngularFireDatabase, private fb: FormBuilder, private authService: AuthService, private router: Router, private elementRef: ElementRef, private http: HttpClient) { }
 
     ngOnInit() {
         this.authenticationForm = this.fb.group({
@@ -54,9 +55,16 @@ export class AuthComponent implements OnInit {
                     resData => {
                         this.isLoading = false;
                         console.log(this.authService.currentUser.token);
-                        this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/.json?auth=' + this.authService.currentUser.token,
-                            new userInformation(this.authService.currentUser.id, 'email')
-                        ).subscribe(responseData => { this.router.navigate(['/dashboard']);});
+                        console.log('poptrpoica')
+                        this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/.json?auth=' + this.authService.currentUser.token, 
+                            new userInformation(this.authService.currentUser.id, signUpData.profession)
+                        ).subscribe(responseData => {
+   
+                            console.log(new userInformation(this.authService.currentUser.id, "email"));
+                            this.router.navigate(['/dashboard']);
+                        });
+
+
                     })
         },
         error => {

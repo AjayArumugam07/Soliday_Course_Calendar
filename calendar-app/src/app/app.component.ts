@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
-
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,13 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit{
 
-    constructor(private authService: AuthService) {}
-
     ngOnInit() {
         this.authService.autoLogin();
+    }
+
+    items: Observable<any[]>;
+    constructor(db: AngularFireDatabase, private authService: AuthService) {
+        this.items = db.list('items').valueChanges();
     }
 
 

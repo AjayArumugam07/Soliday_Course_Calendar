@@ -1,4 +1,4 @@
 export class userInformation {
-    constructor( uid: string, profession: string) { }
+    constructor( private uid: string, private profession: string) {  }
 
 }
