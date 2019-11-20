@@ -3,15 +3,15 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\calendar-edit",
-    "\\src\\app\\calendar-edit\\events-for-day",
     "\\src\\app\\dashboard-body",
     "\\src\\app\\dashboard-body\\card-calendar",
+    "\\src\\app\\header",
     "\\src\\app\\Shared",
     "\\src\\app\\Shared\\loading-spinner",
     "\\src\\assets",
+    "\\src\\environments",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\Shared\\user-Information.model.ts",
+  "SelectedNode": "\\src\\app\\header\\header.component.html",
   "PreviewInSolutionExplorer": false
 }

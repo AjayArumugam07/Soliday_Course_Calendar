@@ -1,6 +1,6 @@
 .card {
   height: 250px;
-  padding: 55px;
+  padding: 0px;
 }
 mat-icon {
   color: darkslateblue
@@ -13,4 +13,8 @@ mat-icon {
 }
 
 button {
+}
+
+.title{
+  text-align: center;
 }

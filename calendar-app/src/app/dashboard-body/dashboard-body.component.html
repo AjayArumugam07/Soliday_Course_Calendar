@@ -4,20 +4,14 @@
       <h1 class="display-3">My Calendars</h1>
     </div>
     <div class="col-md-4">
-      <button type="button" class="btn btn-primary">Add New Course</button>
+      <button type="button" class="btn btn-primary" (click)="onAddNewCourse()">Add New Course</button>
     </div>
   </div>
   <hr />
   <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
-    <ng-container>
-      <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
-                     fxFlex.lt-sm="100%"></card-calendar>
-      <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
-                     fxFlex.lt-sm="100%"></card-calendar>
-      <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
-                     fxFlex.lt-sm="100%"></card-calendar>
-      <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
-                     fxFlex.lt-sm="100%"></card-calendar>
+    <ng-container *ngFor="let calendar of calendars">
+        <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
+                       fxFlex.lt-sm="100%" title="AP Physics"></card-calendar>
     </ng-container>
   </div>
 </div>
