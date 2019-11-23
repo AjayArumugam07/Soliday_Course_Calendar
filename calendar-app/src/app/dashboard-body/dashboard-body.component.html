@@ -11,7 +11,8 @@
   <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
     <ng-container *ngFor="let calendar of calendars">
         <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
-                       fxFlex.lt-sm="100%" title="AP Physics"></card-calendar>
+                       fxFlex.lt-sm="100%" [title]=calendar.title [lastName]=calendar.lastName></card-calendar>
+      <script>console.log(calendar)</script>
     </ng-container>
   </div>
 </div>

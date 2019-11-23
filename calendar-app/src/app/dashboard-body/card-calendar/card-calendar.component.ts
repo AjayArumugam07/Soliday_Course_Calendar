@@ -10,10 +10,10 @@ export class CardCalendarComponent implements OnInit {
 
     constructor(private router: Router) { }
 
-    @Input() title: string = 'Honors Accounting';
+    @Input() title: string = 'Untitled';
+    @Input() lastName: string;
 
     onAddCalendarClick() {
-        console.log("clijsdf");
         this.router.navigate(['/editCalendar'])
     }
 

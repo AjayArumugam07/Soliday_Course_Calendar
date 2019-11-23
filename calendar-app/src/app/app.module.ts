@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { EventsForDayComponent } from './calendar-edit/events-for-day/events-for-day.component';
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinner.component';
+import { CreateCalendarComponent } from './dashboard-body/create-calendar/create-calendar.component';
 
 
 
@@ -35,7 +37,8 @@ import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinne
     DashboardBodyComponent,
     CardCalendarComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    CreateCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +51,11 @@ import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinne
     MatIconModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateCalendarComponent]
 })
 export class AppModule { }

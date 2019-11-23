@@ -4,14 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\dashboard-body",
-    "\\src\\app\\dashboard-body\\card-calendar",
-    "\\src\\app\\header",
+    "\\src\\app\\dashboard-body\\create-calendar",
     "\\src\\app\\Shared",
     "\\src\\app\\Shared\\loading-spinner",
     "\\src\\assets",
     "\\src\\environments",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\header\\header.component.html",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

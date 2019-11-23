@@ -1,0 +1,16 @@
+<form [formGroup]="calendarCreationForm" (ngSubmit)="onCalendarCreation(calendarCreationForm.value)">
+  <div class="form-group">
+    <label class="heading" for="title">Calendar Name</label>
+    <input id="title" class="form-control" [formControlName]="'title'" />
+  </div>
+  <div class="form-group">
+    <label class="heading" for="lastName">Instructor Name</label>
+    <input  id="lastName" class="form-control" formControlName="lastName" />
+  </div>
+  <div>
+    <button class="btn btn-success"
+            type="submit">
+      Create Calendar
+    </button>
+  </div>
+</form>
