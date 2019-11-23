@@ -7,7 +7,7 @@ import { CalendarEditComponent } from './calendar-edit/calendar-edit.component';
 const routes: Routes = [
     { path: 'dashboard', component: DashboardBodyComponent },
     { path: 'auth', component: AuthComponent },
-    { path: 'editCalendar', component: CalendarEditComponent }
+    { path: 'dashboard/editCalendar/:calendarTitle', component: CalendarEditComponent }
 ];
 
 @NgModule({

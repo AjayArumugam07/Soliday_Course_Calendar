@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { relative } from 'path';
 
 @Component({
   selector: 'card-calendar',
@@ -8,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CardCalendarComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private route: ActivatedRoute) { }
 
     @Input() title: string = 'Untitled';
     @Input() lastName: string;
 
     onAddCalendarClick() {
-        this.router.navigate(['/editCalendar'])
+        this.router.navigate(['editCalendar', this.title], { relativeTo: this.route });
     }
 
   ngOnInit() {

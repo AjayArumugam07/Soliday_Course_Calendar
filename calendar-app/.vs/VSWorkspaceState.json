@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\auth",
+    "\\src\\app\\calendar-edit",
     "\\src\\app\\dashboard-body",
-    "\\src\\app\\dashboard-body\\create-calendar",
-    "\\src\\app\\Shared",
-    "\\src\\app\\Shared\\loading-spinner",
+    "\\src\\app\\dashboard-body\\card-calendar",
     "\\src\\assets",
     "\\src\\environments",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\auth\\auth.component.ts",
   "PreviewInSolutionExplorer": false
 }
