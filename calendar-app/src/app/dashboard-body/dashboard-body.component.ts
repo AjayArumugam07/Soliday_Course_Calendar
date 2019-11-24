@@ -50,6 +50,8 @@ export class DashboardBodyComponent implements OnInit {
     }
 
     getCalendar() {
+        console.log('Hello');
+        console.log(this.authService.currentUser.id);
         return this.http.get<calendarFormat[]>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/calendars/.json?auth=' + this.authService.currentUser.token)
             .pipe(map(resData => {
                 const calendarArray = [];
