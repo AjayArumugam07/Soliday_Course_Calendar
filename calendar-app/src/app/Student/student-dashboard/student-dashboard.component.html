@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="display-3">My Courses</h1>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary" (click)="onJoinCourse()">Join Course</button>
+    </div>
+  </div>
+  <hr />
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <ng-container *ngFor="let calendar of calendars">
+      <card-calendar fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
+                     fxFlex.lt-sm="100%" [title]=calendar.title [lastName]=calendar.lastName></card-calendar>
+      <script>console.log(calendar)</script>
+    </ng-container>
+  </div>
+</div>

@@ -11,18 +11,19 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
-import { EventsForDayComponent } from './calendar-edit/events-for-day/events-for-day.component';
+import { EventsForDayComponent } from './Teacher/calendar-edit/events-for-day/events-for-day.component';
 import { capitalizeFirstLetter } from 'src/Pipes/capitalizeFirstLetter.pipe';
-import { CalendarEditComponent } from './calendar-edit/calendar-edit.component';
+import { CalendarEditComponent } from './Teacher/calendar-edit/calendar-edit.component';
 import { HeaderComponent } from './header/header.component';
-import { DashboardBodyComponent } from './dashboard-body/dashboard-body.component';
+import { DashboardBodyComponent } from './Teacher/dashboard-body/dashboard-body.component';
 import { Routes, RouterModule } from '@angular/router';
-import { CardCalendarComponent } from './dashboard-body/card-calendar/card-calendar.component';
+import { CardCalendarComponent } from './Teacher/dashboard-body/card-calendar/card-calendar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinner.component';
-import { CreateCalendarComponent } from './dashboard-body/create-calendar/create-calendar.component';
+import { CreateCalendarComponent } from './Teacher/dashboard-body/create-calendar/create-calendar.component';
+import { StudentDashboardComponent } from './Student/student-dashboard/student-dashboard.component';
 
 
 
@@ -38,7 +39,8 @@ import { CreateCalendarComponent } from './dashboard-body/create-calendar/create
     CardCalendarComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    CreateCalendarComponent
+    CreateCalendarComponent,
+    StudentDashboardComponent
   ],
   imports: [
     BrowserModule,

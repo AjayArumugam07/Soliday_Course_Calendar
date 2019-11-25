@@ -54,17 +54,19 @@ export class AuthComponent implements OnInit {
                 this.authService.login(email, password).subscribe(
                     resData => {
                         this.isLoading = false;
-                        console.log(this.authService.currentUser.token);
-                        console.log('poptrpoica')
                         this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/.json?auth=' + this.authService.currentUser.token, 
                             new userInformation(this.authService.currentUser.id, signUpData.profession)
                         ).subscribe(responseData => {
-   
-                            console.log(new userInformation(this.authService.currentUser.id, "email"));
-                            this.router.navigate(['/dashboard']);
+                            this.authService.getProfession().subscribe(resData => {
+                                if (resData == 'Student') {
+                                    this.isLoading = false;
+                                    this.router.navigate(['/studentDashboard']);
+                                } else if (resData == 'Teacher') {
+                                    this.isLoading = false;
+                                    this.router.navigate(['/dashboard']);
+                                }
+                            });
                         });
-
-
                     })
         },
         error => {
@@ -85,8 +87,15 @@ export class AuthComponent implements OnInit {
         const password = authenticationInfo.passwordAuthentication;
         this.authService.login(email, password).subscribe(
             resData => {
-                this.isLoading = false;
-                this.router.navigate(['/dashboard']);
+                this.authService.getProfession().subscribe(resData => {
+                    if (resData == 'Student') {
+                        this.isLoading = false;
+                        this.router.navigate(['/studentDashboard']);
+                    } else if (resData == 'Teacher') {
+                        this.isLoading = false;
+                        this.router.navigate(['/dashboard']);
+                    }
+                });
             },
             error => {
                 console.log(error);

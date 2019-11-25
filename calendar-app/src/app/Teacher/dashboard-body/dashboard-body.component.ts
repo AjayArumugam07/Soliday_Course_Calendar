@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { map, catchError } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { throwError } from 'rxjs';

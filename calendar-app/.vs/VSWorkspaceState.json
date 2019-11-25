@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\auth",
-    "\\src\\app\\calendar-edit",
-    "\\src\\app\\dashboard-body",
-    "\\src\\app\\dashboard-body\\card-calendar",
-    "\\src\\assets",
-    "\\src\\environments",
+    "\\src\\app\\Student",
+    "\\src\\app\\Student\\student-dashboard",
+    "\\src\\app\\Teacher",
+    "\\src\\app\\Teacher\\calendar-edit",
+    "\\src\\app\\Teacher\\dashboard-body",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\auth\\auth.component.ts",
+  "SelectedNode": "\\src\\app\\Teacher\\dashboard-body\\dashboard-body.component.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Calendar } from '../calendar.model';
-import { AuthService } from '../auth/auth.service';
+import { Calendar } from '../../calendar.model';
+import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 
 

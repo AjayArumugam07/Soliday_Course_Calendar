@@ -97,4 +97,8 @@ export class AuthService {
         }, expirationDuration);
     }
 
+    getProfession() {
+        return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.currentUser.id + '/profession/.json?auth=' + this.currentUser.token);
+    }
+
 }
