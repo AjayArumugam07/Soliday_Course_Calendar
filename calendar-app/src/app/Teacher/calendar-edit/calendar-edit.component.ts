@@ -57,7 +57,13 @@ export class CalendarEditComponent implements OnInit {
         this.calendarTitle = this.route.snapshot.params['calendarTitle'];
         console.log(this.calendarTitle);
         console.log(calendarData);
-        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/calendarInformation/' + this.calendarTitle + '/.json?auth=' + this.authService.currentUser.token, calendarData
-        ).subscribe(responseData => { console.log(responseData); });
+        console.log('hi');
+        console.log(this.authService.currentUser.id);
+        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/' + this.calendarTitle + '/calendarData/.json?auth=' + this.authService.currentUser.token, calendarData
+        ).subscribe(responseData => {
+            console.log(responseData);
+            console.log('hi');
+            console.log(this.authService.currentUser.id);
+        });
   }
 }

@@ -24,6 +24,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinner.component';
 import { CreateCalendarComponent } from './Teacher/dashboard-body/create-calendar/create-calendar.component';
 import { StudentDashboardComponent } from './Student/student-dashboard/student-dashboard.component';
+import { JoinCourseComponent } from './Student/student-dashboard/join-course/join-course.component';
 
 
 
@@ -40,7 +41,8 @@ import { StudentDashboardComponent } from './Student/student-dashboard/student-d
     AuthComponent,
     LoadingSpinnerComponent,
     CreateCalendarComponent,
-    StudentDashboardComponent
+    StudentDashboardComponent,
+    JoinCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { StudentDashboardComponent } from './Student/student-dashboard/student-d
     MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [CreateCalendarComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [CreateCalendarComponent, JoinCourseComponent]
 })
 export class AppModule { }

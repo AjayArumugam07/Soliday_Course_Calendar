@@ -13,12 +13,15 @@ export class CreateCalendarComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<CreateCalendarComponent>) { }
 
+    private randomNumber: string;
+
     ngOnInit() {
+        this.randomNumber = Math.floor(100000 + Math.random() * 900000).toString();
         this.calendarCreationForm = this.fb.group({
             'title': this.fb.control(null),
-            'lastName': this.fb.control(null)
+            'lastName': this.fb.control(null),
+            'accessCode': this.fb.control(this.randomNumber)
         })
-
     }
 
     onCalendarCreation(calendarData) {

@@ -1,0 +1,16 @@
+<form [formGroup]="joinCourseForm" (ngSubmit)="onJoinCourse(joinCourseForm.value)">
+  <div class="form-group">
+    <label class="heading" for="title">Course ID</label>
+    <input id="courseID" class="form-control" [formControlName]="'courseID'" />
+  </div>
+  <div class="form-group">
+    <label class="heading" for="lastName">Access Code</label>
+    <input id="accessCode" class="form-control" formControlName="accessCode" />
+  </div>
+  <div>
+    <button class="btn btn-success"
+            type="submit">
+      Join Course
+    </button>
+  </div>
+</form>

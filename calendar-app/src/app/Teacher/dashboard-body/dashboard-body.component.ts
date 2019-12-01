@@ -25,11 +25,12 @@ export class DashboardBodyComponent implements OnInit {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#E8F1F2';
     }
 
-    pushCalendar(title: string, lastName: string) {
-        this.http.put('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/calendars/' + title + '/.json?auth=' + this.authService.currentUser.token,
+    pushCalendar(title: string, lastName: string, accessCode: string) {
+        this.http.put('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/' +  title + '/.json?auth=' + this.authService.currentUser.token,
             {
                 title: title,
-                owner: lastName
+                owner: lastName,
+                accessCode: accessCode
             }
         ).subscribe(responseData => {
             this.getCalendar();
@@ -45,14 +46,14 @@ export class DashboardBodyComponent implements OnInit {
         const dialogRef = this.dialog.open(CreateCalendarComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(resData => {
-            this.pushCalendar(resData.title, resData.lastName);
+            this.pushCalendar(resData.title, resData.lastName, resData.accessCode);
         })
     }
 
     getCalendar() {
         console.log('Hello');
         console.log(this.authService.currentUser.id);
-        return this.http.get<calendarFormat[]>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/calendars/.json?auth=' + this.authService.currentUser.token)
+        return this.http.get<calendarFormat[]>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/.json?auth=' + this.authService.currentUser.token)
             .pipe(map(resData => {
                 const calendarArray = [];
                 for (const key in resData) {
