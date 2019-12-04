@@ -1,12 +1,13 @@
 <form [formGroup]="joinCourseForm" (ngSubmit)="onJoinCourse(joinCourseForm.value)">
   <div class="form-group">
-    <label class="heading" for="title">Course ID</label>
-    <input id="courseID" class="form-control" [formControlName]="'courseID'" />
+    <label class="heading" for="title">Teacher ID</label>
+    <input id="teacherID" class="form-control" [formControlName]="'teacherID'" />
   </div>
   <div class="form-group">
-    <label class="heading" for="lastName">Access Code</label>
+    <label class="heading" for="accessCode">Access Code</label>
     <input id="accessCode" class="form-control" formControlName="accessCode" />
   </div>
+  <div class="error" *ngIf="error!=null">{{ error }}</div>
   <div>
     <button class="btn btn-success"
             type="submit">

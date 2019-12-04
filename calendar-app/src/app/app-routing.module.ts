@@ -9,7 +9,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardBodyComponent },
     { path: 'studentDashboard', component: StudentDashboardComponent },
     { path: 'auth', component: AuthComponent },
-    { path: 'dashboard/editCalendar/:calendarTitle', component: CalendarEditComponent }
+    { path: 'dashboard/editCalendar/:calendarTitle/:accessCode', component: CalendarEditComponent }
 ];
 
 @NgModule({

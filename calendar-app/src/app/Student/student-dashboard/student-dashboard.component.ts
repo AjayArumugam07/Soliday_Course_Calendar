@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../auth/auth.service';
 import { JoinCourseComponent } from './join-course/join-course.component';
 
 @Component({
@@ -9,7 +11,7 @@ import { JoinCourseComponent } from './join-course/join-course.component';
 })
 export class StudentDashboardComponent implements OnInit {
 
-    constructor(private elementRef: ElementRef, private dialog: MatDialog) { }
+    constructor(private elementRef: ElementRef, private dialog: MatDialog, private http: HttpClient, private authService: AuthService) { }
 
     ngOnInit() {
     }
@@ -28,7 +30,12 @@ export class StudentDashboardComponent implements OnInit {
         const dialogRef = this.dialog.open(JoinCourseComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(resData => {
-            console.log(resData);
+            this.http.put('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/courses/' + resData.title + '/.json?auth=' + this.authService.currentUser.token,
+                {
+                    accessCode: resData.accessCode,
+                    teacherID: resData.teacherID
+                }
+            ).subscribe()
         })
     }
 }

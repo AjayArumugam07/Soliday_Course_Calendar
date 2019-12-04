@@ -12,10 +12,10 @@ export class CardCalendarComponent implements OnInit {
     constructor(private router: Router, private route: ActivatedRoute) { }
 
     @Input() title: string = 'Untitled';
-    @Input() lastName: string;
+    @Input() accessCode: string = 'Untitled';
 
     onAddCalendarClick() {
-        this.router.navigate(['editCalendar', this.title], { relativeTo: this.route });
+        this.router.navigate(['editCalendar', this.title, this.accessCode], { relativeTo: this.route });
     }
 
   ngOnInit() {

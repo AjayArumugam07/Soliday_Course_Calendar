@@ -16,6 +16,7 @@ export class CalendarEditComponent implements OnInit {
   title = 'calendar-app';
     eventsForm: FormGroup;
     calendarTitle: string;
+    accessCode: string;
 
     constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -55,11 +56,12 @@ export class CalendarEditComponent implements OnInit {
     onCreatePost(calendarData) {
 
         this.calendarTitle = this.route.snapshot.params['calendarTitle'];
+        this.accessCode = this.route.snapshot.params['accessCode']
         console.log(this.calendarTitle);
         console.log(calendarData);
         console.log('hi');
         console.log(this.authService.currentUser.id);
-        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/' + this.calendarTitle + '/calendarData/.json?auth=' + this.authService.currentUser.token, calendarData
+        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/' + this.accessCode + '/calendarData/.json?auth=' + this.authService.currentUser.token, calendarData
         ).subscribe(responseData => {
             console.log(responseData);
             console.log('hi');
