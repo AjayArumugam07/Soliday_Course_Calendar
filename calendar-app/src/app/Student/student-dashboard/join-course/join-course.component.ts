@@ -26,7 +26,7 @@ export class JoinCourseComponent implements OnInit {
     }
 
     onJoinCourse(courseInformationData) {
-        this.http.get<{title: string}>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.joinCourseForm.value.teacherID + '/accessCode/' + this.joinCourseForm.value.accessCode + '/.json?auth = ' + this.authService.currentUser.token)
+        this.http.get<{title: string}>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.joinCourseForm.value.teacherID + '/accessCode/' + this.joinCourseForm.value.accessCode + '/.json?auth=' + this.authService.currentUser.token)
             .subscribe(resData => {
                 if (resData != null) {
                     courseInformationData.title = resData.title;

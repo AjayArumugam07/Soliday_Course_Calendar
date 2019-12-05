@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\Student",
-    "\\src\\app\\Student\\student-dashboard",
-    "\\src\\app\\Student\\student-dashboard\\join-course",
+    "\\src\\app\\auth",
     "\\src\\app\\Teacher",
+    "\\src\\app\\Teacher\\calendar-edit",
     "\\src\\app\\Teacher\\dashboard-body",
+    "\\src\\app\\Teacher\\dashboard-body\\card-calendar",
     "\\src\\app\\Teacher\\dashboard-body\\create-calendar",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\Student\\student-dashboard\\student-dashboard.component.ts",
   "PreviewInSolutionExplorer": false
 }

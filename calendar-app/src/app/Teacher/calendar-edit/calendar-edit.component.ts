@@ -61,7 +61,7 @@ export class CalendarEditComponent implements OnInit {
         console.log(calendarData);
         console.log('hi');
         console.log(this.authService.currentUser.id);
-        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/' + this.accessCode + '/calendarData/.json?auth=' + this.authService.currentUser.token, calendarData
+        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.currentUser.token, calendarData
         ).subscribe(responseData => {
             console.log(responseData);
             console.log('hi');

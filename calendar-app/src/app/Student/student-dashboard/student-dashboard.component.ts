@@ -35,7 +35,13 @@ export class StudentDashboardComponent implements OnInit {
                     accessCode: resData.accessCode,
                     teacherID: resData.teacherID
                 }
-            ).subscribe()
+            ).subscribe( data => {
+                this.http.post('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + resData.teacherID + '/students/' + resData.accessCode + '/.json?auth=' + this.authService.currentUser.token,
+                    {
+                        ID: this.authService.currentUser.id
+                    }
+                ).subscribe()
+            })
         })
     }
 }
