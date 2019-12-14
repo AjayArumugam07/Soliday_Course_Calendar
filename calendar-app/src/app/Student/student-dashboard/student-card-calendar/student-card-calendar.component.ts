@@ -14,11 +14,13 @@ export class StudentCardCalendarComponent implements OnInit {
     @Input() accessCode: string = 'Untitled';
     @Input() teacherID: string = 'Untitled';
 
-    onAddCalendarClick() {
-        this.router.navigate(['editCalendar', this.title, this.accessCode], { relativeTo: this.route });
+    onViewCourseClick() {
+        this.router.navigate(['viewCourse', this.title, this.accessCode, this.teacherID], { relativeTo: this.route });
     }
 
     ngOnInit() {
     }
+
+
 
 }

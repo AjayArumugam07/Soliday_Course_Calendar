@@ -56,7 +56,7 @@ export class CalendarEditComponent implements OnInit {
     onCreatePost(calendarData) {
 
         this.calendarTitle = this.route.snapshot.params['calendarTitle'];
-        this.accessCode = this.route.snapshot.params['accessCode']
+        this.accessCode = this.route.snapshot.params['accessCode'];
         console.log(this.calendarTitle);
         console.log(calendarData);
         console.log('hi');

@@ -26,6 +26,7 @@ import { CreateCalendarComponent } from './Teacher/dashboard-body/create-calenda
 import { StudentDashboardComponent } from './Student/student-dashboard/student-dashboard.component';
 import { JoinCourseComponent } from './Student/student-dashboard/join-course/join-course.component';
 import { StudentCardCalendarComponent } from './Student/student-dashboard/student-card-calendar/student-card-calendar.component';
+import { ViewCourseComponent } from './Student/view-course/view-course.component';
 
 
 
@@ -44,7 +45,8 @@ import { StudentCardCalendarComponent } from './Student/student-dashboard/studen
     CreateCalendarComponent,
     StudentDashboardComponent,
     JoinCourseComponent,
-    StudentCardCalendarComponent
+    StudentCardCalendarComponent,
+    ViewCourseComponent
   ],
   imports: [
     BrowserModule,
