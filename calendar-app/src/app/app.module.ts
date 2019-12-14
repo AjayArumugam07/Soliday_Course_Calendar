@@ -25,6 +25,7 @@ import { LoadingSpinnerComponent } from './Shared/loading-spinner/loading-spinne
 import { CreateCalendarComponent } from './Teacher/dashboard-body/create-calendar/create-calendar.component';
 import { StudentDashboardComponent } from './Student/student-dashboard/student-dashboard.component';
 import { JoinCourseComponent } from './Student/student-dashboard/join-course/join-course.component';
+import { StudentCardCalendarComponent } from './Student/student-dashboard/student-card-calendar/student-card-calendar.component';
 
 
 
@@ -42,7 +43,8 @@ import { JoinCourseComponent } from './Student/student-dashboard/join-course/joi
     LoadingSpinnerComponent,
     CreateCalendarComponent,
     StudentDashboardComponent,
-    JoinCourseComponent
+    JoinCourseComponent,
+    StudentCardCalendarComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,6 @@
     "\\src\\app\\Teacher\\dashboard-body\\create-calendar",
     "\\src\\Pipes"
   ],
-  "SelectedNode": "\\src\\app\\Student\\student-dashboard\\student-dashboard.component.ts",
+  "SelectedNode": "\\src\\app\\Teacher\\calendar-edit\\calendar-edit.component.ts",
   "PreviewInSolutionExplorer": false
 }

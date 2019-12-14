@@ -3,6 +3,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { JoinCourseComponent } from './join-course/join-course.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'student-dashboard',
@@ -12,8 +13,10 @@ import { JoinCourseComponent } from './join-course/join-course.component';
 export class StudentDashboardComponent implements OnInit {
 
     constructor(private elementRef: ElementRef, private dialog: MatDialog, private http: HttpClient, private authService: AuthService) { }
+    courses = [];
 
     ngOnInit() {
+        this.getCourses();
     }
 
 
@@ -40,8 +43,31 @@ export class StudentDashboardComponent implements OnInit {
                     {
                         ID: this.authService.currentUser.id
                     }
-                ).subscribe()
+                ).subscribe(resData => {
+                    this.getCourses();
+                })
             })
         })
     }
+
+    getCourses() {
+        console.log('Hello');
+        console.log(this.authService.currentUser.id);
+        return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/courses/.json?auth=' + this.authService.currentUser.token)
+            .pipe(map(resData => {
+                const calendarArray = [];
+                for (const key in resData) {
+                    calendarArray.push({ ...resData[key], key });
+                }
+                console.log(calendarArray);
+                return calendarArray;
+            }))
+            .subscribe(calendarArray => {
+                this.courses = calendarArray;
+                console.log(this.courses);
+            })
+
+
+
+    };
 }

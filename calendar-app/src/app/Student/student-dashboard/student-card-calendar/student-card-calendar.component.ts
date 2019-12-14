@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-
 @Component({
-  selector: 'card-calendar',
-  templateUrl: './card-calendar.component.html',
-  styleUrls: ['./card-calendar.component.css']
+  selector: 'student-card-calendar',
+  templateUrl: './student-card-calendar.component.html',
+  styleUrls: ['./student-card-calendar.component.css']
 })
-export class CardCalendarComponent implements OnInit {
+export class StudentCardCalendarComponent implements OnInit {
 
     constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -19,7 +18,7 @@ export class CardCalendarComponent implements OnInit {
         this.router.navigate(['editCalendar', this.title, this.accessCode], { relativeTo: this.route });
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }
