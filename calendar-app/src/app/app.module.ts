@@ -27,6 +27,7 @@ import { StudentDashboardComponent } from './Student/student-dashboard/student-d
 import { JoinCourseComponent } from './Student/student-dashboard/join-course/join-course.component';
 import { StudentCardCalendarComponent } from './Student/student-dashboard/student-card-calendar/student-card-calendar.component';
 import { ViewCourseComponent } from './Student/view-course/view-course.component';
+import { StudentEventsForDayComponent } from './Student/view-course/student-events-for-day/student-events-for-day.component';
 
 
 
@@ -46,7 +47,8 @@ import { ViewCourseComponent } from './Student/view-course/view-course.component
     StudentDashboardComponent,
     JoinCourseComponent,
     StudentCardCalendarComponent,
-    ViewCourseComponent
+    ViewCourseComponent,
+    StudentEventsForDayComponent
   ],
   imports: [
     BrowserModule,

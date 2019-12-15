@@ -14,6 +14,16 @@ export class StudentDashboardComponent implements OnInit {
 
     constructor(private elementRef: ElementRef, private dialog: MatDialog, private http: HttpClient, private authService: AuthService) { }
     courses = [];
+    mondayCW = [];
+    mondayHW = [];
+    tuesdayCW = [];
+    tuesdayHW = [];
+    wednesdayCW = [];
+    wednesdayHW = [];
+    thursdayCW = [];
+    thursdayHW = [];
+    fridayCW = [];
+    fridayHW = [];
 
     ngOnInit() {
         this.getCourses();
@@ -64,6 +74,7 @@ export class StudentDashboardComponent implements OnInit {
             }))
             .subscribe(calendarArray => {
                 this.courses = calendarArray;
+                for (const key in calendarArray)
                 console.log(this.courses);
             })
 
