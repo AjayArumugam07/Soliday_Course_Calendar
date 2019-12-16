@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class StudentEventsForDayComponent implements OnInit {
 
     @Input() events;
+    @Input() typeOfEvent;
 
   constructor() { }
 

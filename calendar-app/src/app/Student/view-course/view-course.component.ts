@@ -15,22 +15,24 @@ export class ViewCourseComponent implements OnInit {
     calendarTitle: string;
     accessCode: string;
     teacherID: string;
+    isLoading = false;
     events = [];
 
-    mondayHW = [];
-    mondayCW = [];
-    tuesdayHW = [];
-    tuesdayCW = [];
-    wednesdayHW = [];
-    wednesdayCW = [];
-    thursdayHW = [];
-    thursdayCW = [];
-    fridayHW = [];
-    fridayCW = [];
+    mondayHW = ['No Events for this Day'];
+    mondayCW = ['No Events for this Day'];
+    tuesdayHW = ['No Events for this Day'];
+    tuesdayCW = ['No Events for this Day'];
+    wednesdayHW = ['No Events for this Day'];
+    wednesdayCW = ['No Events for this Day'];
+    thursdayHW = ['No Events for this Day'];
+    thursdayCW = ['No Events for this Day'];
+    fridayHW = ['No Events for this Day'];
+    fridayCW = ['No Events for this Day'];
 
     constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) { }
 
     ngOnInit() {
+        this.isLoading = true;
         this.fetchCalendarData();
     }
 
@@ -41,36 +43,33 @@ export class ViewCourseComponent implements OnInit {
         this.http.get<courseData>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.teacherID + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.currentUser.token)
             .subscribe(resData => {
                 if (resData.mondayEvents) {
-                    this.mondayHW = _.values(resData.mondayEvents.homework)
-                    this.mondayCW = _.values(resData.mondayEvents.classwork)
-                } 
+                    resData.mondayEvents.homework !== undefined && (this.mondayHW = _.values(resData.mondayEvents.homework));
+                    resData.mondayEvents.classwork !== undefined && (this.mondayCW = _.values(resData.mondayEvents.classwork));
+                }
 
                 if (resData.tuesdayEvents) {
-                    this.tuesdayHW = _.values(resData.tuesdayEvents.homework)
-                    this.tuesdayCW = _.values(resData.tuesdayEvents.classwork)
-                } 
+                    resData.tuesdayEvents.homework !== undefined && (this.tuesdayHW = _.values(resData.tuesdayEvents.homework));
+                    resData.tuesdayEvents.classwork !== undefined && (this.tuesdayCW = _.values(resData.tuesdayEvents.classwork));
+                }
 
                 if (resData.wednesdayEvents) {
-                    this.wednesdayHW = _.values(resData.wednesdayEvents.homework)
-                    this.wednesdayCW = _.values(resData.wednesdayEvents.classwork)
-                } 
+                    resData.wednesdayEvents.homework !== undefined && (this.wednesdayHW = _.values(resData.wednesdayEvents.homework));
+                    resData.wednesdayEvents.classwork !== undefined && (this.wednesdayCW = _.values(resData.wednesdayEvents.classwork));
+                }
 
                 if (resData.thursdayEvents) {
-                    this.thursdayHW = _.values(resData.thursdayEvents.homework)
-                    this.thursdayCW = _.values(resData.thursdayEvents.classwork)
-                } 
+                    resData.thursdayEvents.homework !== undefined && (this.thursdayHW = _.values(resData.thursdayEvents.homework));
+                    resData.thursdayEvents.classwork !== undefined && (this.thursdayCW = _.values(resData.thursdayEvents.classwork));
+                }
 
                 if (resData.fridayEvents) {
-                    this.fridayHW = _.values(resData.fridayEvents.homework)
-                    this.fridayCW = _.values(resData.fridayEvents.classwork)
-                } 
-          
+                    resData.fridayEvents.homework !== undefined && (this.fridayHW = _.values(resData.fridayEvents.homework));
+                    resData.fridayEvents.classwork !== undefined && (this.fridayCW = _.values(resData.fridayEvents.classwork));
+                }
+
+                this.isLoading = false;
             })
     }
-    sortData(resData) {
-        
-    }
-
 }
 
 interface courseData {

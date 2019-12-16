@@ -1,32 +1,37 @@
-<div class="row" style="text-align: center">
+<div class="row">
+  <div class="offset-md-6" *ngIf="isLoading" style="text-align: center;">
+    <loading-spinner></loading-spinner>
+  </div>
+</div>
+<div class="row" style="text-align: center" *ngIf="!isLoading">
   <div class="col-md-2 offset-md-1">
     <h1>Monday</h1>
     <hr />
-    <student-events-for-day [events]="mondayCW"></student-events-for-day>
-    <student-events-for-day [events]="mondayHW"></student-events-for-day>
+    <student-events-for-day [events]="mondayCW" typeOfEvent="Classwork"></student-events-for-day>
+    <student-events-for-day [events]="mondayHW" typeOfEvent="Homework"></student-events-for-day>
   </div>
   <div class="col-md-2">
     <h1>Tuesday</h1>
     <hr />
-    <student-events-for-day [events]="tuesdayCW"></student-events-for-day>
-    <student-events-for-day [events]="tuesdayHW"></student-events-for-day>
+    <student-events-for-day [events]="tuesdayCW" typeOfEvent="Classwork"></student-events-for-day>
+    <student-events-for-day [events]="tuesdayHW" typeOfEvent="Homework"></student-events-for-day>
   </div>
   <div class="col-md-2">
     <h1>Wednesday</h1>
     <hr />
-    <student-events-for-day [events]="wednesdayCW"></student-events-for-day>
-    <student-events-for-day [events]="wednesdayHW"></student-events-for-day>
+    <student-events-for-day [events]="wednesdayCW" typeOfEvent="Classwork"></student-events-for-day>
+    <student-events-for-day [events]="wednesdayHW" typeOfEvent="Homework"></student-events-for-day>
   </div>
   <div class="col-md-2">
     <h1>Thursday</h1>
     <hr />
-    <student-events-for-day [events]="thursdayCW"></student-events-for-day>
-    <student-events-for-day [events]="thursdayHW"></student-events-for-day>
+    <student-events-for-day [events]="thursdayCW" typeOfEvent="Classwork"></student-events-for-day>
+    <student-events-for-day [events]="thursdayHW" typeOfEvent="Homework"></student-events-for-day>
   </div>
   <div class="col-md-2">
     <h1>Friday</h1>
     <hr />
-    <student-events-for-day [events]="fridayCW"></student-events-for-day>
-    <student-events-for-day [events]="fridayHW"></student-events-for-day>
+    <student-events-for-day [events]="fridayCW" typeOfEvent="Classwork"></student-events-for-day>
+    <student-events-for-day [events]="fridayHW" typeOfEvent="Homework"></student-events-for-day>
   </div>
 </div>
