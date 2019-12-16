@@ -40,16 +40,31 @@ export class ViewCourseComponent implements OnInit {
         this.teacherID = this.route.snapshot.params['teacherID'];
         this.http.get<courseData>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.teacherID + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.currentUser.token)
             .subscribe(resData => {
-                this.mondayHW = _.values(resData.mondayEvents.homework);
-                this.mondayCW = _.values(resData.mondayEvents.classwork);
-                this.tuesdayHW = _.values(resData.tuesdayEvents.homework);
-                this.tuesdayCW = _.values(resData.tuesdayEvents.classwork);
-                this.wednesdayHW = _.values(resData.wednesdayEvents.homework);
-                this.wednesdayCW = _.values(resData.wednesdayEvents.classwork);
-                this.thursdayHW = _.values(resData.thursdayEvents.homework);
-                this.thursdayCW = _.values(resData.thursdayEvents.classwork);
-                this.fridayHW = _.values(resData.fridayEvents.homework);
-                this.fridayCW = _.values(resData.fridayEvents.classwork);
+                if (resData.mondayEvents) {
+                    this.mondayHW = _.values(resData.mondayEvents.homework)
+                    this.mondayCW = _.values(resData.mondayEvents.classwork)
+                } 
+
+                if (resData.tuesdayEvents) {
+                    this.tuesdayHW = _.values(resData.tuesdayEvents.homework)
+                    this.tuesdayCW = _.values(resData.tuesdayEvents.classwork)
+                } 
+
+                if (resData.wednesdayEvents) {
+                    this.wednesdayHW = _.values(resData.wednesdayEvents.homework)
+                    this.wednesdayCW = _.values(resData.wednesdayEvents.classwork)
+                } 
+
+                if (resData.thursdayEvents) {
+                    this.thursdayHW = _.values(resData.thursdayEvents.homework)
+                    this.thursdayCW = _.values(resData.thursdayEvents.classwork)
+                } 
+
+                if (resData.fridayEvents) {
+                    this.fridayHW = _.values(resData.fridayEvents.homework)
+                    this.fridayCW = _.values(resData.fridayEvents.classwork)
+                } 
+          
             })
     }
     sortData(resData) {
