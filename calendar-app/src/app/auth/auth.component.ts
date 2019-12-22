@@ -105,6 +105,6 @@ export class AuthComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#13293D';
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'aliceblue';
     }
 }

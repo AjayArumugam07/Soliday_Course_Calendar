@@ -38,6 +38,7 @@ export class ViewCourseComponent implements OnInit {
 
     fetchCalendarData() {
         this.calendarTitle = this.route.snapshot.params['calendarTitle'];
+        console.log(this.route.snapshot);
         this.accessCode = this.route.snapshot.params['accessCode'];
         this.teacherID = this.route.snapshot.params['teacherID'];
         this.http.get<courseData>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.teacherID + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.currentUser.token)

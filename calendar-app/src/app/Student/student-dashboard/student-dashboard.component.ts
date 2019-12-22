@@ -31,7 +31,7 @@ export class StudentDashboardComponent implements OnInit {
 
 
     ngAfterViewInit() {
-        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#E8F1F2';
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'aliceblue';
     }
 
     onJoinCourse() {

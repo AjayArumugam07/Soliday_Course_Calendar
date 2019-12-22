@@ -1,19 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #13293D;">
-  <span class="navbar-brand mb-0 h1">Soliday</span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" *ngIf="isAuthenticated">
-    <div class="nav navbar-nav">
-      <a class="nav-item nav-link" routerLink="/dashboard">Home</a>
-      <a class="nav-item nav-link" href="#">Account Settings</a>
+<nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="assets/soliday_v6.png" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collape navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" *ngIf="isAuthenticated">Home</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="" *ngIf="isAuthenticated">Account Settings</a>
+        </li>
+        <li>
+          <a class="nav-item nav-link" routerLink="" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+        </li>
+        <li>
+          <a class="nav-item nav-link" routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
+        </li>
+      </ul>
     </div>
   </div>
-
-
-  <span class="navbar-text" *ngIf="isAuthenticated">Welcome to Creator Dashboard!</span>
-  <div class="nav navbar-nav">
-    <a class="nav-item nav-link" routerLink="" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
-    <a class="nav-item nav-link" routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
-  </div>
 </nav>
+<hr />
+
+
+

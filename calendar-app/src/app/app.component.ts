@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,22 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
 
+    constructor(db: AngularFireDatabase, private authService: AuthService, private route: ActivatedRoute) {
+        this.items = db.list('items').valueChanges();
+    }
+
+
+    appear = this.route.snapshot.params['appear'];
+
     ngOnInit() {
         this.authService.autoLogin();
     }
 
-    items: Observable<any[]>;
-    constructor(db: AngularFireDatabase, private authService: AuthService) {
-        this.items = db.list('items').valueChanges();
+    ngAfterInit() {
+
     }
+
+    items: Observable<any[]>;
 
 
   

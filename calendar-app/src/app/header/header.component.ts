@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -12,7 +12,10 @@ export class HeaderComponent implements OnInit {
     private userSub: Subscription;
     isAuthenticated = false;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private elementRef: ElementRef) { }
+
+    ngAfterViewInit() {
+    }
 
     ngOnInit() {
         this.userSub = this.authService.user.subscribe(user => {
