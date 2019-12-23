@@ -9,7 +9,7 @@ import { ViewCourseComponent } from './Student/view-course/view-course.component
 const routes: Routes = [
     { path: 'dashboard', component: DashboardBodyComponent },
     { path: 'studentDashboard', component: StudentDashboardComponent },
-    { path: 'auth', component: AuthComponent },
+    { path: 'auth/:mode', component: AuthComponent },
     { path: 'dashboard/editCalendar/:calendarTitle/:accessCode', component: CalendarEditComponent },
     { path: 'studentDashboard/viewCourse/:calendarTitle/:accessCode/:teacherID', component: ViewCourseComponent }
 ];

@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\auth",
+    "\\src\\app\\header",
     "\\src\\app\\Student",
+    "\\src\\app\\Student\\student-dashboard",
+    "\\src\\app\\Student\\student-dashboard\\student-card-calendar",
     "\\src\\app\\Student\\view-course",
-    "\\src\\app\\Student\\view-course\\student-events-for-day",
-    "\\src\\app\\Teacher",
-    "\\src\\app\\Teacher\\calendar-edit",
-    "\\src\\app\\Teacher\\calendar-edit\\events-for-day",
-    "\\src\\assets"
+    "\\src\\app\\Student\\view-course\\student-events-for-day"
   ],
-  "SelectedNode": "\\src\\app\\header\\header.component.css",
+  "SelectedNode": "\\src\\app\\auth\\auth.service.ts",
   "PreviewInSolutionExplorer": false
 }

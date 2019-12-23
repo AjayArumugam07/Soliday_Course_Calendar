@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400&display=swap');
+
 button {
   margin-right: 10px;
   margin-top: 10px;
+  background-color: #13293D;
 }
 
 .heading{
@@ -8,5 +11,15 @@ button {
 }
 
 .card{
-  padding: 50px 10px
+  padding: 50px 10px;
+}
+
+.card-title h3{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { userInformation } from '../Shared/user-Information.model';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -13,7 +13,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class AuthComponent implements OnInit {
 
-    isLoginMode = true;
+    isLoginMode: boolean;
     isLoading = false;
     error: string = null;
 
@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
     accountCreationForm: FormGroup;
     professions = ['Student', 'Teacher'];
 
-    constructor(private db: AngularFireDatabase, private fb: FormBuilder, private authService: AuthService, private router: Router, private elementRef: ElementRef, private http: HttpClient) { }
+    constructor(private db: AngularFireDatabase, private fb: FormBuilder, private authService: AuthService, private router: Router, private elementRef: ElementRef, private http: HttpClient, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.authenticationForm = this.fb.group({
@@ -39,6 +39,19 @@ export class AuthComponent implements OnInit {
             'confirmPasswordCreation': this.fb.control(null),
             'profession': this.fb.control(null)
         })
+
+        this.route.params.subscribe(
+            (params: Params) => {
+                if (this.route.snapshot.params['mode'] == 'true') {
+                    this.isLoginMode = true;
+                }
+                else if (this.route.snapshot.params['mode'] == 'false') {
+                    this.isLoginMode = false;
+                }
+            }
+        )
+
+
     }
 
     onAccountCreation(signUpData) {

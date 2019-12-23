@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: white">
+<nav class="navbar navbar-expand-md sticky-top" style="background-color: white">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="assets/soliday_v6.png" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -7,7 +7,7 @@
     <div class="collape navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" *ngIf="isAuthenticated">Home</a>
+          <a class="nav-link" routerLink="/dashboard" *ngIf="isAuthenticated">Dashboard</a>
         </li>
         <li>
           <a class="nav-link" routerLink="" *ngIf="isAuthenticated">Account Settings</a>
@@ -16,7 +16,13 @@
           <a class="nav-item nav-link" routerLink="" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
         </li>
         <li>
-          <a class="nav-item nav-link" routerLink="/auth" *ngIf="!isAuthenticated">Login</a>
+          <a class="nav-item nav-link" routerLink="/auth" *ngIf="!isAuthenticated">Home</a>
+        </li>
+        <li>
+          <a class="nav-item nav-link" [routerLink]="['/auth', 'true']" *ngIf="!isAuthenticated">Login</a>
+        </li>
+        <li>
+          <a class="nav-item nav-link" [routerLink]="['/auth', 'false']" *ngIf="!isAuthenticated">Sign Up</a>
         </li>
       </ul>
     </div>

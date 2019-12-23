@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,6 +13,8 @@ export class StudentCardCalendarComponent implements OnInit {
     @Input() title: string = 'Untitled';
     @Input() accessCode: string = 'Untitled';
     @Input() teacherID: string = 'Untitled';
+
+
 
     onViewCourseClick() {
         this.router.navigate(['viewCourse', this.title, this.accessCode, this.teacherID], { relativeTo: this.route });

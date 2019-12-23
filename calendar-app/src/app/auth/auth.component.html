@@ -1,6 +1,8 @@
-<div class="col-md-4 offset-md-4">
-  <img src="assets/soliday_v6.png"/>
-    <div class="">
+<div class="card col-md-4 offset-md-4 border-light" style="margin-right: 20px">
+  <div class="card-title">
+    <h3 style="text-align: center">{{ isLoginMode ? 'User Login' : 'Sign Up' }}</h3>
+  </div>
+    <div class="card-body">
       <div *ngIf="isLoading" style="text-align: center;">
         <loading-spinner></loading-spinner>
       </div>
@@ -25,7 +27,7 @@
             </label>
           </div>
         </div>
-        <div>
+        <div style="text-align: center">
           <button class="btn btn-primary"
                   type="submit">
             SignUp
@@ -42,21 +44,30 @@
           <label class="heading" for="password">Password</label>
           <input type="password" id="password" class="form-control" formControlName="passwordAuthentication" />
         </div>
-        <div>
+        <div style="text-align: center">
           <button class="btn btn-primary"
                   type="submit">
             Login
           </button>
         </div>
       </form>
-      <div class="alert alert-danger" *ngIf="error">
-        <p> {{ error }}</p>
+      <div style="text-align: center">
+        <div class="alert alert-danger" *ngIf="error">
+          <p> {{ error }}</p>
+        </div>
+        <div *ngIf="isLoginMode" style="margin-top: 10px;">
+          <a class="btn btn-outline-dark" href="/users/googleauth" role="button" style="text-transform:none">
+            <img width="20" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            Login with Google
+          </a>
+        </div>
+        <button class="btn btn-primary"
+                type="button"
+                (click)="onSwitchMode()">
+          {{ isLoginMode ? 'Dont have an account? Sign up now' : 'Already have an account? Login Instead' }}
+        </button>
+
       </div>
-      <button class="btn btn-primary"
-              type="button"
-              (click)="onSwitchMode()">
-        Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
-      </button>
-    </div>
+      </div>
   </div>
 

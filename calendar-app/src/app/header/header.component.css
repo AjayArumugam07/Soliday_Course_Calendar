@@ -2,7 +2,8 @@
 
 .nav-link {
   font-family: 'Poppins', sans-serif;
-  font-weight: 700
+  font-weight: 700;
+  color: #13293D;
 }
 
 .navbar-nav li {
@@ -30,6 +31,7 @@
 }
 
 hr{
-  border: 0.5px solid;
+  border: 1px solid;
 }
+
 
