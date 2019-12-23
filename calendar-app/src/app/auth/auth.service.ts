@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Subject, BehaviorSubject, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { User } from './user.model';
 import { Router } from '@angular/router';
 
@@ -34,7 +34,9 @@ export class AuthService {
                 email: email,
                 password: password,
                 returnSecureToken: true
-            })
+            }).pipe(catchError(error => {
+                return this.handleError(error);
+            }))
 
 
     }
@@ -56,6 +58,9 @@ export class AuthService {
                 password: password,
                 returnSecureToken: true
             })
+            .pipe(catchError(error => {
+                return this.handleError(error);
+            }))
             .pipe(tap(resData => {
                 this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
                // return resData.localId;
@@ -100,6 +105,22 @@ export class AuthService {
     getProfession() {
         console.log(new Date().getTime());
         return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.currentUser.id + '/profession/.json?auth=' + this.currentUser.token);
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        let errorMessage = 'An unknown errror occured';
+        if (!error.error || !error.error.error) {
+            return throwError(errorMessage);
+        }
+        switch (error.error.error.message) {
+            case 'EMAIL_EXISTS':
+                errorMessage = 'This email already exists'
+            case 'EMAIL_NOT_FOUND':
+                errorMessage = 'Email or Password is incorrect'
+            case 'INVALID_PASSWORD':
+                errorMessage = 'Email or Password is incorrect'
+        }
+        return throwError(errorMessage);
     }
 
 }

@@ -7,40 +7,50 @@
         <loading-spinner></loading-spinner>
       </div>
       <form [formGroup]="accountCreationForm" (ngSubmit)="onAccountCreation(accountCreationForm.value)" *ngIf="!isLoginMode && !isLoading">
+        <div class="form-group">
+          <label class="heading" for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-control" [formControlName]="'firstNameCreation'" />
+          <span class="invalid" *ngIf="!accountCreationForm.get('firstNameCreation').valid && accountCreationForm.get('firstNameCreation').touched">Enter First Name</span>
+        </div>
+        <div class="form-group">
+          <label class="heading" for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="form-control" [formControlName]="'lastNameCreation'" />
+          <span class="invalid" *ngIf="!accountCreationForm.get('lastNameCreation').valid && accountCreationForm.get('lastNameCreation').touched">Enter Last Name</span>
+        </div>
+        <div class="form-group">
+          <label class="heading" for="email">E-Mail</label>
+          <input type="email" id="email" class="form-control" [formControlName]="'emailCreation'" />
+          <span class="invalid" *ngIf="!accountCreationForm.get('emailCreation').valid && accountCreationForm.get('emailCreation').touched">Enter a valid E-mail</span>
+        </div>
+        <div formGroupName="password">
           <div class="form-group">
-            <label class="heading" for="email">E-Mail</label>
-            <input type="email" id="email" class="form-control" [formControlName]="'emailCreation'" />
-            <span class="invalid" *ngIf="!accountCreationForm.get('emailCreation').valid && accountCreationForm.get('emailCreation').touched">Please enter a valid E-mail</span>
+            <label class="heading" for="password">Password</label>
+            <input type="password" id="password" class="form-control" formControlName="passwordCreation" />
+            <span class="invalid" *ngIf="!accountCreationForm.get('password').get('passwordCreation').valid && accountCreationForm.get('password').get('passwordCreation').touched">Use 6 characters or more for your password</span>
           </div>
-          <div formGroupName="password">
-            <div class="form-group">
-              <label class="heading" for="password">Password</label>
-              <input type="password" id="password" class="form-control" formControlName="passwordCreation" />
-              <span class="invalid" *ngIf="!accountCreationForm.get('password').get('passwordCreation').valid && accountCreationForm.get('password').get('passwordCreation').touched">Please enter a Password</span>
-            </div>
-            <div class="form-group">
-              <label class="heading" for="confirmPassword">Confirm Password</label>
-              <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPasswordCreation" />
-              <span class="invalid" *ngIf="!accountCreationForm.get('password').get('confirmPasswordCreation').valid && accountCreationForm.get('password').get('confirmPasswordCreation').touched">Passwords do not match</span>
-            </div>
+          <div class="form-group">
+            <label class="heading" for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPasswordCreation" />
+            <span class="invalid" *ngIf="!accountCreationForm.get('password').get('confirmPasswordCreation').valid && accountCreationForm.get('password').get('confirmPasswordCreation').touched">Passwords do not match</span>
           </div>
-          <div>
-            <label class="heading">Are you a Student or a Teacher?</label>
-            <div class="radio" *ngFor="let profession of professions">
-              <label>
-                <input type="radio" [value]="profession" formControlName="profession" /> {{ profession }}
-              </label>
-            </div>
+        </div>
+        <div>
+          <label class="heading">Are you a Student or a Teacher?</label>
+          <div class="radio" *ngFor="let profession of professions">
+            <label>
+              <input type="radio" [value]="profession" formControlName="profession" /> {{ profession }}
+            </label>
           </div>
-          <div class="alert alert-danger" *ngIf="error">
-            <span> {{ error }}</span>
-          </div>
-          <div style="text-align: center">
-            <button class="btn btn-primary"
-                    type="submit">
-              SignUp
-            </button>
-          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="error">
+          <span> {{ error }}</span>
+        </div>
+        <div style="text-align: center">
+          <button class="btn btn-primary"
+                  type="submit">
+            SignUp
+          </button>
+        </div>
       </form>
 
       <form [formGroup]="authenticationForm" (ngSubmit)="onAuthentication(authenticationForm.value)" *ngIf="isLoginMode && !isLoading">

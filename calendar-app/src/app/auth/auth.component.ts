@@ -34,11 +34,13 @@ export class AuthComponent implements OnInit {
         })
 
         this.accountCreationForm = this.fb.group({
+            'firstNameCreation': this.fb.control(null, [Validators.required]),
+            'lastNameCreation': this.fb.control(null, [Validators.required]),
             'emailCreation': this.fb.control(null, [Validators.required, Validators.email]),
             'profession': this.fb.control(null, [Validators.required]),
             'password': this.fb.group({
-            'passwordCreation': this.fb.control(null, [Validators.required]),
-                'confirmPasswordCreation': this.fb.control(null, [Validators.required])
+            'passwordCreation': this.fb.control(null, [Validators.required, Validators.minLength(6)]),
+            'confirmPasswordCreation': this.fb.control(null, [Validators.required])
             }, { validators: this.confirmPassword })
 
         })
@@ -67,14 +69,14 @@ export class AuthComponent implements OnInit {
         if (this.accountCreationForm.valid) {
             this.isLoading = true;
             const email = signUpData.emailCreation;
-            const password = signUpData.passwordCreation;
+            const password = signUpData.password.passwordCreation;
             this.authService.signup(email, password).subscribe(
                 resData => {
                     this.authService.login(email, password).subscribe(
                         resData => {
                             this.isLoading = false;
                             this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/.json?auth=' + this.authService.currentUser.token,
-                                new userInformation(this.authService.currentUser.id, signUpData.profession)
+                                new userInformation(this.authService.currentUser.id, signUpData.profession, signUpData.firstNameCreation, signUpData.lastNameCreation)
                             ).subscribe(responseData => {
                                 this.authService.getProfession().subscribe(resData => {
                                     if (resData == 'Student') {
@@ -90,7 +92,7 @@ export class AuthComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
-                    this.error = 'An error occured';
+                    this.error = error;
                     this.isLoading = false;
                 });
             this.accountCreationForm.reset();
@@ -121,7 +123,7 @@ export class AuthComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
-                    this.error = 'An error occured';
+                    this.error = error;
                     this.isLoading = false;
                 });
         } else {
@@ -144,4 +146,6 @@ export class AuthComponent implements OnInit {
         }
         return;
     }
+
+
 }
