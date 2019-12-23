@@ -23,3 +23,15 @@ button {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.alert {
+  text-align: center;
+}
+
+.invalid {
+  color: red;
+}

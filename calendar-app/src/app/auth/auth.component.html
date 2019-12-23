@@ -7,42 +7,55 @@
         <loading-spinner></loading-spinner>
       </div>
       <form [formGroup]="accountCreationForm" (ngSubmit)="onAccountCreation(accountCreationForm.value)" *ngIf="!isLoginMode && !isLoading">
-        <div class="form-group">
-          <label class="heading" for="email">E-Mail</label>
-          <input type="email" id="email" class="form-control" [formControlName]="'emailCreation'" />
-        </div>
-        <div class="form-group">
-          <label class="heading" for="password">Password</label>
-          <input type="password" id="password" class="form-control" formControlName="passwordCreation" />
-        </div>
-        <div class="form-group">
-          <label class="heading" for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPasswordCreation" />
-        </div>
-        <div>
-          <label class="heading">Are you a Student or a Teacher?</label>
-          <div class="radio" *ngFor="let profession of professions">
-            <label>
-              <input type="radio" [value]="profession" formControlName="profession" /> {{ profession }}
-            </label>
+          <div class="form-group">
+            <label class="heading" for="email">E-Mail</label>
+            <input type="email" id="email" class="form-control" [formControlName]="'emailCreation'" />
+            <span class="invalid" *ngIf="!accountCreationForm.get('emailCreation').valid && accountCreationForm.get('emailCreation').touched">Please enter a valid E-mail</span>
           </div>
-        </div>
-        <div style="text-align: center">
-          <button class="btn btn-primary"
-                  type="submit">
-            SignUp
-          </button>
-        </div>
+          <div formGroupName="password">
+            <div class="form-group">
+              <label class="heading" for="password">Password</label>
+              <input type="password" id="password" class="form-control" formControlName="passwordCreation" />
+              <span class="invalid" *ngIf="!accountCreationForm.get('password').get('passwordCreation').valid && accountCreationForm.get('password').get('passwordCreation').touched">Please enter a Password</span>
+            </div>
+            <div class="form-group">
+              <label class="heading" for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPasswordCreation" />
+              <span class="invalid" *ngIf="!accountCreationForm.get('password').get('confirmPasswordCreation').valid && accountCreationForm.get('password').get('confirmPasswordCreation').touched">Passwords do not match</span>
+            </div>
+          </div>
+          <div>
+            <label class="heading">Are you a Student or a Teacher?</label>
+            <div class="radio" *ngFor="let profession of professions">
+              <label>
+                <input type="radio" [value]="profession" formControlName="profession" /> {{ profession }}
+              </label>
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="error">
+            <span> {{ error }}</span>
+          </div>
+          <div style="text-align: center">
+            <button class="btn btn-primary"
+                    type="submit">
+              SignUp
+            </button>
+          </div>
       </form>
 
       <form [formGroup]="authenticationForm" (ngSubmit)="onAuthentication(authenticationForm.value)" *ngIf="isLoginMode && !isLoading">
         <div class="form-group">
           <label class="heading" for="email">E-Mail</label>
           <input type="email" id="email" class="form-control" [formControlName]="'emailAuthentication'" />
+          <span *ngIf="!authenticationForm.get('emailAuthentication').valid && authenticationForm.get('emailAuthentication').touched" class="invalid">Please enter a valid E-mail</span>
         </div>
         <div class="form-group">
           <label class="heading" for="password">Password</label>
           <input type="password" id="password" class="form-control" formControlName="passwordAuthentication" />
+          <span *ngIf="!authenticationForm.get('passwordAuthentication').valid && authenticationForm.get('passwordAuthentication').touched" class="invalid">Please enter a Valid Password</span>
+        </div>
+        <div class="alert alert-danger" *ngIf="error">
+          <span> {{ error }}</span>
         </div>
         <div style="text-align: center">
           <button class="btn btn-primary"
@@ -52,9 +65,6 @@
         </div>
       </form>
       <div style="text-align: center">
-        <div class="alert alert-danger" *ngIf="error">
-          <p> {{ error }}</p>
-        </div>
         <div *ngIf="isLoginMode" style="margin-top: 10px;">
           <a class="btn btn-outline-dark" href="/users/googleauth" role="button" style="text-transform:none">
             <img width="20" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
