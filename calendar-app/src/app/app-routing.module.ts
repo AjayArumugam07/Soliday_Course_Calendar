@@ -10,13 +10,14 @@ import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { StudentGuard } from './auth/student.guard';
 import { TeacherGuard } from './auth/teacher.guard';
+import { AuthenticatedGuard } from './auth/Authenticated.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'notFound', component: NotFoundComponent },
 
-    { path: 'auth/:mode', component: AuthComponent },
+    { path: 'auth/:mode', component: AuthComponent, canActivate: [AuthenticatedGuard] },
 
     { path: 'dashboard', component: DashboardBodyComponent, canActivate: [AuthGuard, TeacherGuard] },
     { path: 'dashboard/editCalendar/:calendarTitle/:accessCode', component: CalendarEditComponent, canActivate: [AuthGuard, TeacherGuard] },
