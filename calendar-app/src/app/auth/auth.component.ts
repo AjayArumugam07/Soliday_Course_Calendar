@@ -62,6 +62,8 @@ export class AuthComponent implements OnInit {
             }
         )
 
+        
+
 
     }
 
@@ -72,21 +74,20 @@ export class AuthComponent implements OnInit {
             const password = signUpData.password.passwordCreation;
             this.authService.signup(email, password).subscribe(
                 resData => {
-                    this.authService.login(email, password).subscribe(
-                        resData => {
-                            this.isLoading = false;
-                            this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/.json?auth=' + this.authService.currentUser.token,
-                                new userInformation(this.authService.currentUser.id, signUpData.profession, signUpData.firstNameCreation, signUpData.lastNameCreation)
-                            ).subscribe(responseData => {
-                                this.authService.getProfession().subscribe(resData => {
-                                    if (resData == 'Student') {
-                                        this.isLoading = false;
-                                        this.router.navigate(['/studentDashboard']);
-                                    } else if (resData == 'Teacher') {
-                                        this.isLoading = false;
-                                        this.router.navigate(['/dashboard']);
-                                    }
-                                });
+                    console.log(resData);
+                    this.authService.pushUser(signUpData).subscribe(() => {
+                        console.log('here');
+                        this.authService.login(email, password, true).subscribe(
+                            () => {
+                                this.authService.user.value.userInformation.profession = signUpData.profession;
+                                console.log(this.authService.user);
+                                if (signUpData.profession == 'Student') {
+                                    this.isLoading = false;
+                                    this.router.navigate(['/studentDashboard']);
+                                } else if (signUpData.profession == 'Teacher') {
+                                    this.isLoading = false;
+                                    this.router.navigate(['/dashboard']);
+                                }
                             });
                         })
                 },
@@ -109,13 +110,14 @@ export class AuthComponent implements OnInit {
             this.isLoading = true;
             const email = authenticationInfo.emailAuthentication;
             const password = authenticationInfo.passwordAuthentication;
-            this.authService.login(email, password).subscribe(
+            this.authService.login(email, password, false).subscribe(
                 resData => {
-                    this.authService.getProfession().subscribe(resData => {
-                        if (resData == 'Student') {
+                    this.authService.getProfession()
+                        .subscribe(resData => {
+                        if (this.authService.user.value.userInformation.profession == 'Student') {
                             this.isLoading = false;
                             this.router.navigate(['/studentDashboard']);
-                        } else if (resData == 'Teacher') {
+                        } else if (this.authService.user.value.userInformation.profession == 'Teacher') {
                             this.isLoading = false;
                             this.router.navigate(['/dashboard']);
                         }

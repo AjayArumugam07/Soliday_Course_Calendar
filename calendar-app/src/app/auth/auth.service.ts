@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Subject, BehaviorSubject, throwError } from 'rxjs';
+import { Subject, BehaviorSubject, throwError, Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { userInformation } from '../Shared/user-Information.model';
 
 interface AuthReponseData {
     kind: string;
@@ -41,17 +42,20 @@ export class AuthService {
 
     }
 
+    pushUser(signUpData) {
+        return this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.currentUser.id + '/.json?auth=' + this.currentUser.token,
+            new userInformation(this.currentUser.id, signUpData.profession, signUpData.firstNameCreation, signUpData.lastNameCreation))
+    }
+
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        this.currentUser = new User(email, userId, token, expirationDate);
+        this.currentUser = new User(email, userId, token, expirationDate, new userInformation(null, null, null, null));
         this.user.next(this.currentUser);
         localStorage.setItem('userData', JSON.stringify(this.currentUser));
         this.autoLogout(expiresIn * 1000);
-        console.log(this.currentUser);
-        
     }
 
-    login(email: string, password: string) {
+    login(email: string, password: string, professionRetrieved: boolean) {
         return this.http.post<AuthReponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA98ZPBqN1TB6Z5c7sqql6lKBPaGfz26hE',
             {
                 email: email,
@@ -63,7 +67,13 @@ export class AuthService {
             }))
             .pipe(tap(resData => {
                 this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
-               // return resData.localId;
+                if (professionRetrieved == false) {
+                    this.getProfession().subscribe(profession => {
+                        console.log(profession);
+                        this.user.value.userInformation.profession = profession.toString();
+                        console.log(this.user);
+                    })
+                } 
             }));
     }
 
@@ -87,7 +97,7 @@ export class AuthService {
         if (!userData) {
             return;
         }
-        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate), null);
         if (loadedUser.token) {
             this.currentUser = loadedUser;
             this.user.next(loadedUser);
@@ -102,8 +112,10 @@ export class AuthService {
         }, expirationDuration);
     }
 
+
+
     getProfession() {
-        console.log(new Date().getTime());
+        console.log(this.currentUser.token);
         return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.currentUser.id + '/profession/.json?auth=' + this.currentUser.token);
     }
 
