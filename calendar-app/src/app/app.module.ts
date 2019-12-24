@@ -29,6 +29,7 @@ import { StudentCardCalendarComponent } from './Student/student-dashboard/studen
 import { ViewCourseComponent } from './Student/view-course/view-course.component';
 import { StudentEventsForDayComponent } from './Student/view-course/student-events-for-day/student-events-for-day.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -50,7 +51,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     StudentCardCalendarComponent,
     ViewCourseComponent,
     StudentEventsForDayComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

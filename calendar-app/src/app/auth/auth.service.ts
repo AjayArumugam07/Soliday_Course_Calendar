@@ -65,6 +65,9 @@ export class AuthService {
                 if (professionRetrieved == false) {
                     this.getProfession().subscribe(profession => {
                         this.user.value.userInformation.profession = profession.toString();
+                        let userData = JSON.parse(localStorage.getItem('userData'));
+                        userData.userInformation.profession = profession.toString();
+                        localStorage.setItem('userData', JSON.stringify(userData));
                     })
                 } 
             }));
@@ -85,12 +88,13 @@ export class AuthService {
             email: string,
             id: string,
             _token: string,
-            _tokenExpirationDate: string
+            _tokenExpirationDate: string,
+            userInformation: userInformation
         } = JSON.parse(localStorage.getItem('userData'));
         if (!userData) {
             return;
         }
-        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate), null);
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate), userData.userInformation);
         if (loadedUser.token) {
             this.user.next(loadedUser);
             const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();

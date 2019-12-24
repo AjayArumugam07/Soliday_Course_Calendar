@@ -43,6 +43,10 @@ export class ViewCourseComponent implements OnInit {
         this.teacherID = this.route.snapshot.params['teacherID'];
         this.http.get<courseData>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.teacherID + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.user.value.token)
             .subscribe(resData => {
+                if (!resData) {
+                    this.isLoading = false;
+                    return;
+                }
                 if (resData.mondayEvents) {
                     resData.mondayEvents.homework !== undefined && (this.mondayHW = _.values(resData.mondayEvents.homework));
                     resData.mondayEvents.classwork !== undefined && (this.mondayCW = _.values(resData.mondayEvents.classwork));
