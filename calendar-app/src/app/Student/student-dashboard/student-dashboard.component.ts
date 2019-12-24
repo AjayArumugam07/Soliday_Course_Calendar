@@ -29,7 +29,6 @@ export class StudentDashboardComponent implements OnInit {
         this.getCourses();
     }
 
-
     ngAfterViewInit() {
         this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'ghostwhite';
     }
@@ -43,15 +42,15 @@ export class StudentDashboardComponent implements OnInit {
         const dialogRef = this.dialog.open(JoinCourseComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(resData => {
-            this.http.put('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/courses/' + resData.title + '/.json?auth=' + this.authService.currentUser.token,
+            this.http.put('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.user.value.id + '/courses/' + resData.title + '/.json?auth=' + this.authService.user.value.token,
                 {
                     accessCode: resData.accessCode,
                     teacherID: resData.teacherID
                 }
             ).subscribe( data => {
-                this.http.post('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + resData.teacherID + '/students/' + resData.accessCode + '/.json?auth=' + this.authService.currentUser.token,
+                this.http.post('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + resData.teacherID + '/students/' + resData.accessCode + '/.json?auth=' + this.authService.user.value.token,
                     {
-                        ID: this.authService.currentUser.id
+                        ID: this.authService.user.value.id
                     }
                 ).subscribe(resData => {
                     this.getCourses();
@@ -61,24 +60,16 @@ export class StudentDashboardComponent implements OnInit {
     }
 
     getCourses() {
-        console.log('Hello');
-        console.log(this.authService.currentUser.id);
-        return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.currentUser.id + '/courses/.json?auth=' + this.authService.currentUser.token)
+        return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.user.value.id + '/courses/.json?auth=' + this.authService.user.value.token)
             .pipe(map(resData => {
                 const calendarArray = [];
                 for (const key in resData) {
                     calendarArray.push({ ...resData[key], key });
                 }
-                console.log(calendarArray);
                 return calendarArray;
             }))
             .subscribe(calendarArray => {
                 this.courses = calendarArray;
-                for (const key in calendarArray)
-                console.log(this.courses);
             })
-
-
-
     };
 }

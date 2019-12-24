@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CalendarEditComponent implements OnInit {
 
-  title = 'calendar-app';
+    title = 'calendar-app';
     eventsForm: FormGroup;
     calendarTitle: string;
     accessCode: string;
@@ -44,28 +44,13 @@ export class CalendarEditComponent implements OnInit {
       })
 
     })
-
-    //  this.eventsForm.valueChanges.subscribe(newVal => console.log(newVal))
   }
-
-  onSubmit() {
-
-  }
-
 
     onCreatePost(calendarData) {
 
         this.calendarTitle = this.route.snapshot.params['calendarTitle'];
         this.accessCode = this.route.snapshot.params['accessCode'];
-        console.log(this.calendarTitle);
-        console.log(calendarData);
-        console.log('hi');
-        console.log(this.authService.currentUser.id);
-        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.currentUser.token, calendarData
-        ).subscribe(responseData => {
-            console.log(responseData);
-            console.log('hi');
-            console.log(this.authService.currentUser.id);
-        });
+        this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.user.value.id + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.user.value.token, calendarData
+        ).subscribe();
   }
 }

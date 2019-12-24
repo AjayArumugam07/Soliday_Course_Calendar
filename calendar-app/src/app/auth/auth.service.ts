@@ -22,14 +22,11 @@ interface AuthReponseData {
 export class AuthService {
 
     user = new BehaviorSubject<User>(null);
-    currentUser: User;
     private tokenExpirationTimer: any;
 
     constructor(private http: HttpClient, private router: Router) { }
 
     signup(email: string, password: string) {
-
-
         return this.http.post<AuthReponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA98ZPBqN1TB6Z5c7sqql6lKBPaGfz26hE',
             {
                 email: email,
@@ -38,20 +35,18 @@ export class AuthService {
             }).pipe(catchError(error => {
                 return this.handleError(error);
             }))
-
-
     }
 
     pushUser(signUpData) {
-        return this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.currentUser.id + '/.json?auth=' + this.currentUser.token,
-            new userInformation(this.currentUser.id, signUpData.profession, signUpData.firstNameCreation, signUpData.lastNameCreation))
+        return this.http.put<userInformation>('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.user.value.id + '/.json?auth=' + this.user.value.token,
+            new userInformation(this.user.value.id, signUpData.profession, signUpData.firstNameCreation, signUpData.lastNameCreation))
     }
 
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        this.currentUser = new User(email, userId, token, expirationDate, new userInformation(null, null, null, null));
-        this.user.next(this.currentUser);
-        localStorage.setItem('userData', JSON.stringify(this.currentUser));
+        let currentUser = new User(email, userId, token, expirationDate, new userInformation(null, null, null, null));
+        this.user.next(currentUser);
+        localStorage.setItem('userData', JSON.stringify(currentUser));
         this.autoLogout(expiresIn * 1000);
     }
 
@@ -69,9 +64,7 @@ export class AuthService {
                 this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
                 if (professionRetrieved == false) {
                     this.getProfession().subscribe(profession => {
-                        console.log(profession);
                         this.user.value.userInformation.profession = profession.toString();
-                        console.log(this.user);
                     })
                 } 
             }));
@@ -87,7 +80,7 @@ export class AuthService {
         this.tokenExpirationTimer = null;
     }
 
-    autoLogin() {
+    private autoLogin() {
         const userData: {
             email: string,
             id: string,
@@ -99,24 +92,20 @@ export class AuthService {
         }
         const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate), null);
         if (loadedUser.token) {
-            this.currentUser = loadedUser;
             this.user.next(loadedUser);
             const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
         }
     }
 
-    autoLogout(expirationDuration: number) {
+    private autoLogout(expirationDuration: number) {
         this.tokenExpirationTimer = setTimeout(() => {
             this.logout();
         }, expirationDuration);
     }
 
-
-
     getProfession() {
-        console.log(this.currentUser.token);
-        return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.currentUser.id + '/profession/.json?auth=' + this.currentUser.token);
+        return this.http.get('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.user.value.id + '/profession/.json?auth=' + this.user.value.token);
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -134,5 +123,4 @@ export class AuthService {
         }
         return throwError(errorMessage);
     }
-
 }

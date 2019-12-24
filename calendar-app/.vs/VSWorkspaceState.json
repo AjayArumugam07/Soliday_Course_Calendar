@@ -6,11 +6,8 @@
     "\\src\\app\\auth",
     "\\src\\app\\header",
     "\\src\\app\\not-found",
-    "\\src\\app\\Student\\student-dashboard",
-    "\\src\\app\\Student\\student-dashboard\\student-card-calendar",
-    "\\src\\app\\Student\\view-course",
-    "\\src\\app\\Student\\view-course\\student-events-for-day"
+    "\\src\\app\\Shared"
   ],
-  "SelectedNode": "\\src\\app\\auth\\user.model.ts",
+  "SelectedNode": "\\src\\app\\Shared\\user-Information.model.ts",
   "PreviewInSolutionExplorer": false
 }

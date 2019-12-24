@@ -17,11 +17,6 @@ export class AuthComponent implements OnInit {
     isLoading = false;
     error: string = null;
 
-    onSwitchMode() {
-        this.router.navigate(['/auth/' + !this.isLoginMode]);
-        this.error = null;
-    }
-
     authenticationForm: FormGroup;
     accountCreationForm: FormGroup;
     professions = ['Student', 'Teacher'];
@@ -32,7 +27,6 @@ export class AuthComponent implements OnInit {
             'emailAuthentication': this.fb.control(null, [Validators.required, Validators.email]),
             'passwordAuthentication': this.fb.control(null, [Validators.required])
         })
-
         this.accountCreationForm = this.fb.group({
             'firstNameCreation': this.fb.control(null, [Validators.required]),
             'lastNameCreation': this.fb.control(null, [Validators.required]),
@@ -42,15 +36,15 @@ export class AuthComponent implements OnInit {
             'passwordCreation': this.fb.control(null, [Validators.required, Validators.minLength(6)]),
             'confirmPasswordCreation': this.fb.control(null, [Validators.required])
             }, { validators: this.confirmPassword })
-
         })
+    }
 
-
+    onSwitchMode() {
+        this.router.navigate(['/auth/' + !this.isLoginMode]);
+        this.error = null;
     }
 
     ngOnInit() {
-
-
         this.route.params.subscribe(
             (params: Params) => {
                 if (this.route.snapshot.params['mode'] == 'true') {
@@ -61,10 +55,6 @@ export class AuthComponent implements OnInit {
                 }
             }
         )
-
-        
-
-
     }
 
     onAccountCreation(signUpData) {
@@ -74,13 +64,10 @@ export class AuthComponent implements OnInit {
             const password = signUpData.password.passwordCreation;
             this.authService.signup(email, password).subscribe(
                 resData => {
-                    console.log(resData);
-                    this.authService.pushUser(signUpData).subscribe(() => {
-                        console.log('here');
                         this.authService.login(email, password, true).subscribe(
                             () => {
+                                this.authService.pushUser(signUpData).subscribe(() => {
                                 this.authService.user.value.userInformation.profession = signUpData.profession;
-                                console.log(this.authService.user);
                                 if (signUpData.profession == 'Student') {
                                     this.isLoading = false;
                                     this.router.navigate(['/studentDashboard']);
@@ -92,14 +79,12 @@ export class AuthComponent implements OnInit {
                         })
                 },
                 error => {
-                    console.log(error);
                     this.error = error;
                     this.isLoading = false;
                 });
             this.accountCreationForm.reset();
         } else {
             this.error = 'Please enter Valid Data';
-            console.log(this.accountCreationForm)
         }
 
 
@@ -124,16 +109,12 @@ export class AuthComponent implements OnInit {
                     });
                 },
                 error => {
-                    console.log(error);
                     this.error = error;
                     this.isLoading = false;
                 });
         } else {
             this.error = 'Please enter Valid Data';
-            console.log(this.accountCreationForm)
         }
-
-
     }
 
     ngAfterViewInit() {
@@ -148,6 +129,4 @@ export class AuthComponent implements OnInit {
         }
         return;
     }
-
-
 }

@@ -18,15 +18,14 @@ export class DashboardBodyComponent implements OnInit {
     ngOnInit() {
         this.getCalendar();
     }
-    constructor(private elementRef: ElementRef, private http: HttpClient, private authService: AuthService, private dialog: MatDialog) {
+    constructor(private elementRef: ElementRef, private http: HttpClient, private authService: AuthService, private dialog: MatDialog) {}
 
-  }
-  ngAfterViewInit() {
+    ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#E8F1F2';
     }
 
     pushCalendar(title: string, accessCode: string) {
-        this.http.put('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/accessCode/' + accessCode + '/.json?auth=' + this.authService.currentUser.token,
+        this.http.put('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.user.value.id + '/accessCode/' + accessCode + '/.json?auth=' + this.authService.user.value.token,
             {
                 title: title
             }
@@ -37,35 +36,26 @@ export class DashboardBodyComponent implements OnInit {
 
     onAddNewCourse() {
         const dialogConfig = new MatDialogConfig();
-
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-
         const dialogRef = this.dialog.open(CreateCalendarComponent, dialogConfig);
-
         dialogRef.afterClosed().subscribe(resData => {
             this.pushCalendar(resData.title, resData.accessCode);
         })
     }
 
     getCalendar() {
-        console.log('Hello');
-        console.log(this.authService.currentUser.id);
-        return this.http.get<calendarFormat[]>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.currentUser.id + '/accessCode/.json?auth=' + this.authService.currentUser.token)
+        return this.http.get<calendarFormat[]>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.user.value.id + '/accessCode/.json?auth=' + this.authService.user.value.token)
             .pipe(map(resData => {
                 const calendarArray = [];
                 for (const key in resData) {
                     calendarArray.push({ ...resData[key], key });
                 }
-                console.log(calendarArray);
                 return calendarArray;
             }))
             .subscribe(calendarArray => {
                 this.calendars = calendarArray;
             })
-       
-
-        
     };
 }
 
