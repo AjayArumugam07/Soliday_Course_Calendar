@@ -5,9 +5,11 @@
     "\\src\\app",
     "\\src\\app\\auth",
     "\\src\\app\\header",
-    "\\src\\app\\not-found",
-    "\\src\\app\\Shared"
+    "\\src\\app\\home",
+    "\\src\\app\\Student",
+    "\\src\\app\\Student\\view-course",
+    "\\src\\app\\Student\\view-course\\student-events-for-day"
   ],
-  "SelectedNode": "\\src\\app\\Shared\\user-Information.model.ts",
+  "SelectedNode": "\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }

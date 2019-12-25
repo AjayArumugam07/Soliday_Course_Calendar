@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { EventsForDayComponent } from './Teacher/calendar-edit/events-for-day/events-for-day.component';
@@ -30,6 +31,7 @@ import { ViewCourseComponent } from './Student/view-course/view-course.component
 import { StudentEventsForDayComponent } from './Student/view-course/student-events-for-day/student-events-for-day.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { ToolbarComponent } from './Teacher/calendar-edit/toolbar/toolbar.component';
 
 
 
@@ -52,7 +54,8 @@ import { HomeComponent } from './home/home.component';
     ViewCourseComponent,
     StudentEventsForDayComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule
   ],
   providers: [],
     bootstrap: [AppComponent],

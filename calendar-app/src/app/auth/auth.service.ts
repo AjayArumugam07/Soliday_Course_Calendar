@@ -83,7 +83,7 @@ export class AuthService {
         this.tokenExpirationTimer = null;
     }
 
-    private autoLogin() {
+    autoLogin() {
         const userData: {
             email: string,
             id: string,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Calendar } from '../../calendar.model';
@@ -18,7 +18,7 @@ export class CalendarEditComponent implements OnInit {
     calendarTitle: string;
     accessCode: string;
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private route: ActivatedRoute) { }
+    constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private route: ActivatedRoute, private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.eventsForm = this.fb.group({
@@ -52,5 +52,9 @@ export class CalendarEditComponent implements OnInit {
         this.accessCode = this.route.snapshot.params['accessCode'];
         this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.user.value.id + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.user.value.token, calendarData
         ).subscribe();
-  }
+    }
+
+    ngAfterViewInit() {
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'aliceblue';
+    }
 }

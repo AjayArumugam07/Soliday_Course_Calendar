@@ -7,11 +7,9 @@
            *ngFor="let controls of eventsInDay.get(day + 'Events.' + eventType).controls; let i = index">
         <div class="row"
              [formGroupName]="day + 'Events'">
-          <div class="col-md-1">
-            <h5> {{ i + 1 }}</h5>
-          </div>
           <div [formArrayName]="eventType"
-               class="col-md-10">
+               class="col-md-12">
+            <toolbar></toolbar>
             <textarea class="form-control"
                       [formControlName]="i"></textarea>
           </div>
@@ -20,9 +18,9 @@
       </div>
     </form>
     <div class="text-center">
-      <button class="add-button" type="button" (click)="addTextArea()">
-        <img src="assets/AddEvent.png">
-      </button>
+    <button mat-mini-fab (click)="addTextArea()">
+      <mat-icon color="primary">add</mat-icon>
+    </button>
     </div>
   </div>
 </div>

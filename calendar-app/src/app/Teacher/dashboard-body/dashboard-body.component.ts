@@ -21,7 +21,7 @@ export class DashboardBodyComponent implements OnInit {
     constructor(private elementRef: ElementRef, private http: HttpClient, private authService: AuthService, private dialog: MatDialog) {}
 
     ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#E8F1F2';
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'aliceblue';
     }
 
     pushCalendar(title: string, accessCode: string) {
