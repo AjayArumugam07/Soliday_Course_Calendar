@@ -10,8 +10,7 @@
           <div [formArrayName]="eventType"
                class="col-md-12">
             <toolbar></toolbar>
-            <textarea class="form-control"
-                      [formControlName]="i"></textarea>
+            <quill-editor [formControlName]="i" [modules]="config" [styles]="editorStyle" (onContentChanged)="maxLength($event)"></quill-editor>
           </div>
         </div>
         <hr />

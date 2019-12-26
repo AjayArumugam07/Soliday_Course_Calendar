@@ -2,8 +2,8 @@
   <h3 style="text-align: center">{{ typeOfEvent }}</h3>
   <hr />
   <div class="card-body" *ngFor="let key of events">
-    <div>
-      <p> {{ key }}</p>
+    <div class="event">
+      <quill-view [content]="key" format="text" theme="snow"></quill-view>
       <hr />
     </div>
   </div>

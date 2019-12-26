@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
@@ -29,11 +29,15 @@ export class ViewCourseComponent implements OnInit {
     fridayHW = ['No Events for this Day'];
     fridayCW = ['No Events for this Day'];
 
-    constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) { }
+    constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, private elementRef: ElementRef) { }
 
     ngOnInit() {
         this.isLoading = true;
         this.fetchCalendarData();
+    }
+
+    ngAfterViewInit() {
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'aliceblue';
     }
 
     fetchCalendarData() {

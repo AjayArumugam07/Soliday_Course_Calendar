@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { MatDialogConfig, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'toolbar',
@@ -7,11 +8,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-    constructor(private elementRef: ElementRef) { }
+    constructor(private elementRef: ElementRef, private dialog: MatDialog) { }
 
   ngOnInit() {
   }
-
-
 
 }

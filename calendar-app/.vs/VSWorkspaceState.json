@@ -3,13 +3,15 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\auth",
-    "\\src\\app\\header",
-    "\\src\\app\\home",
     "\\src\\app\\Student",
-    "\\src\\app\\Student\\view-course",
-    "\\src\\app\\Student\\view-course\\student-events-for-day"
+    "\\src\\app\\Student\\student-dashboard",
+    "\\src\\app\\Student\\student-dashboard\\join-course",
+    "\\src\\app\\Teacher",
+    "\\src\\app\\Teacher\\calendar-edit",
+    "\\src\\app\\Teacher\\calendar-edit\\events-for-day",
+    "\\src\\app\\Teacher\\calendar-edit\\events-for-day\\edit-day",
+    "\\src\\app\\Teacher\\calendar-edit\\events-for-day\\toolbar"
   ],
-  "SelectedNode": "\\src\\app\\app.component.ts",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

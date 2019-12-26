@@ -36,26 +36,28 @@ export class StudentDashboardComponent implements OnInit {
     onJoinCourse() {
         const dialogConfig = new MatDialogConfig();
 
-        dialogConfig.disableClose = true;
+        dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
 
         const dialogRef = this.dialog.open(JoinCourseComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(resData => {
-            this.http.put('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.user.value.id + '/courses/' + resData.title + '/.json?auth=' + this.authService.user.value.token,
-                {
-                    accessCode: resData.accessCode,
-                    teacherID: resData.teacherID
-                }
-            ).subscribe( data => {
-                this.http.post('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + resData.teacherID + '/students/' + resData.accessCode + '/.json?auth=' + this.authService.user.value.token,
+            if (resData) {
+                this.http.put('https://app-calendar-65dc1.firebaseio.com/userInformation/' + this.authService.user.value.id + '/courses/' + resData.title + '/.json?auth=' + this.authService.user.value.token,
                     {
-                        ID: this.authService.user.value.id
+                        accessCode: resData.accessCode,
+                        teacherID: resData.teacherID
                     }
-                ).subscribe(resData => {
-                    this.getCourses();
+                ).subscribe(data => {
+                    this.http.post('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + resData.teacherID + '/students/' + resData.accessCode + '/.json?auth=' + this.authService.user.value.token,
+                        {
+                            ID: this.authService.user.value.id
+                        }
+                    ).subscribe(resData => {
+                        this.getCourses();
+                    })
                 })
-            })
+            }
         })
     }
 

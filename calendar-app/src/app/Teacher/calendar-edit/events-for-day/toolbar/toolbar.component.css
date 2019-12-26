@@ -1,22 +1,25 @@
 .mat-toolbar{
-  background-color: #13293D;
-  max-height: 25px;
+  background-color: red;
+  max-height: 10px;
   border-radius: 1px;
   margin-bottom: 3px;
   color: white;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 15px;
   border-radius: 4px;
 }
 
-.mat-mini-fab{
-  max-height: 20px;
-  max-width: 20px;
-}
 
-.mat-icon{
+
+.mat-icon {
   max-height: inherit;
   max-width: none;
   color: white;
-  margin-right: 12px;
+  margin-right: 55px;
 }
+
+:focus {
+  outline: 0 !important;
+}
+
+

@@ -12,6 +12,8 @@ export class EventsForDayComponent implements OnInit {
   @Input() eventType: string;
   @Input() eventsInDay: FormGroup;
 
+  MAX_LENGTH = 400;
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -19,6 +21,22 @@ export class EventsForDayComponent implements OnInit {
 
   addTextArea() {
     (<FormArray>this.eventsInDay.get(this.day + 'Events.' + this.eventType)).push(new FormControl(null));
-  }
+    }
+
+    config = {
+        toolbar: [
+            ['bold', 'italic', 'underline', { 'color': [] }, { 'align': [] }, { 'list': 'ordered' }, { 'list': 'bullet' }]
+        ]
+    }
+
+    editorStyle = {
+        height: '170px'
+    }
+
+    maxLength(event) {
+        if (event.editor.getLength() > this.MAX_LENGTH) {
+            event.editor.deleteText(this.MAX_LENGTH, event.editor.getLength());
+        }
+    }
 
 }
