@@ -39,4 +39,17 @@ export class EventsForDayComponent implements OnInit {
         }
     }
 
+    deleteTextArea(event) {
+        console.log(event.currentTarget.attributes.id);
+        let textArea: string = event.currentTarget.attributes.id.value;
+        var textAreaDetails = textArea.split("_", 3)
+        let day: string = textAreaDetails[0];
+        let eventType = textAreaDetails[1];
+        let id = textAreaDetails[2];
+        console.log(day);
+        console.log(eventType);
+        console.log(textAreaDetails); 
+        (<FormArray>this.eventsInDay.get(day + 'Events').get(eventType)).removeAt(+id);
+    }
+
 }

@@ -3,15 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\Student",
-    "\\src\\app\\Student\\student-dashboard",
-    "\\src\\app\\Student\\student-dashboard\\join-course",
     "\\src\\app\\Teacher",
     "\\src\\app\\Teacher\\calendar-edit",
     "\\src\\app\\Teacher\\calendar-edit\\events-for-day",
-    "\\src\\app\\Teacher\\calendar-edit\\events-for-day\\edit-day",
     "\\src\\app\\Teacher\\calendar-edit\\events-for-day\\toolbar"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\Teacher\\calendar-edit\\calendar-edit.component.ts",
   "PreviewInSolutionExplorer": false
 }

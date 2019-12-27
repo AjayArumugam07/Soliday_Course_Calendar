@@ -9,7 +9,11 @@
              [formGroupName]="day + 'Events'">
           <div [formArrayName]="eventType"
                class="col-md-12">
-            <toolbar></toolbar>
+            <mat-toolbar>
+              <button mat-icon-button (click)="deleteTextArea($event)" [id]="day + '_' + eventType + '_' + i">
+                <mat-icon class="toolbar" color="primary">delete</mat-icon>
+              </button>
+            </mat-toolbar>
             <quill-editor [formControlName]="i" [modules]="config" [styles]="editorStyle" (onContentChanged)="maxLength($event)"></quill-editor>
           </div>
         </div>

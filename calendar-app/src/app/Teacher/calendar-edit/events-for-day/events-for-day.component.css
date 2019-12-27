@@ -13,3 +13,29 @@
 .form-control{
   height: 100px;
 }
+
+.mat-toolbar{
+  background-color: red;
+  max-height: 10px;
+  border-radius: 1px;
+  margin-bottom: 3px;
+  color: white;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+
+.toolbar {
+  max-height: inherit;
+  max-width: none;
+  color: white;
+  margin-right: 55px;
+}
+
+:focus {
+  outline: 0 !important;
+}
+
+
