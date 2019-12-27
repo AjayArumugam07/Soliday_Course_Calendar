@@ -1,0 +1,30 @@
+.frame {
+  margin-top: -40px;
+  width: 204px;
+  height: 150px;
+  border: solid;
+  border-color: #0061b0;
+  text-align: center;
+}
+
+.headerCalendar {
+  width: 200px;
+  height: 20px;
+  background-color: #0061b0;
+  color: white;
+}
+
+.week{
+  height: 26px;
+  width: 200px;
+}
+
+.month{
+  padding-right: 20px;
+  padding-bottom: 3px;
+}
+
+.container{
+  padding-top: 1px;
+}
+

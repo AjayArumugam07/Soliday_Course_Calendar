@@ -34,6 +34,11 @@ import { StudentEventsForDayComponent } from './Student/view-course/student-even
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './Teacher/calendar-edit/events-for-day/toolbar/toolbar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './Shared/calendar/calendar.component';
+import { WeekComponent } from './Shared/calendar/week/week.component';
+import { CalendarService } from './Shared/calendar/calendar.service';
 
 
 
@@ -57,7 +62,9 @@ import { ToolbarComponent } from './Teacher/calendar-edit/events-for-day/toolbar
     StudentEventsForDayComponent,
     NotFoundComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    CalendarComponent,
+    WeekComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +80,10 @@ import { ToolbarComponent } from './Teacher/calendar-edit/events-for-day/toolbar
     AngularFireDatabaseModule,
     MatDialogModule,
     MatToolbarModule,
-    QuillModule.forRoot()
-  ],
-  providers: [],
+    QuillModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    ],
+    providers: [],
     bootstrap: [AppComponent],
     entryComponents: [CreateCalendarComponent, JoinCourseComponent]
 })

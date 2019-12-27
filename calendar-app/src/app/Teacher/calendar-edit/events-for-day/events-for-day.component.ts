@@ -19,7 +19,7 @@ export class EventsForDayComponent implements OnInit {
   ngOnInit() {
   }
 
-  addTextArea() {
+    addTextArea() {
     (<FormArray>this.eventsInDay.get(this.day + 'Events.' + this.eventType)).push(new FormControl(null));
     }
 

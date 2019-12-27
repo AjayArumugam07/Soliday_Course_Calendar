@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Calendar } from '../../calendar.model';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { CalendarService } from '../../Shared/calendar/calendar.service';
 
 
 @Component({
@@ -17,8 +18,9 @@ export class CalendarEditComponent implements OnInit {
     eventsForm: FormGroup;
     calendarTitle: string;
     accessCode: string;
+    month: string;
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private route: ActivatedRoute, private elementRef: ElementRef) { }
+    constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private route: ActivatedRoute, private elementRef: ElementRef, private calendarService: CalendarService) { }
 
   ngOnInit() {
     this.eventsForm = this.fb.group({
@@ -44,10 +46,10 @@ export class CalendarEditComponent implements OnInit {
       })
 
     })
+      this.month = this.calendarService.getMonth();
   }
 
     onCreatePost(calendarData) {
-
         this.calendarTitle = this.route.snapshot.params['calendarTitle'];
         this.accessCode = this.route.snapshot.params['accessCode'];
         this.http.put<Calendar>('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.user.value.id + '/calendars/' + this.accessCode + '/.json?auth=' + this.authService.user.value.token, calendarData
