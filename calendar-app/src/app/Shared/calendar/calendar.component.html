@@ -1,12 +1,14 @@
 <div class="frame">
-  <div class="headerCalendar">
-    <h6>December</h6>
-  </div>
-  <div class="container">
-    <week weekID="0"></week>
-    <week weekID="1"></week>
-    <week weekID="2"></week>
-    <week weekID="3"></week>
-    <week weekID="4"></week>
+  <mat-toolbar>
+    <button mat-icon-button (click)="onPreviousMonth()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <small>{{ month + '  ' + year }}</small>
+    <button mat-icon-button (click)="onNextMonth()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="container" *ngFor="let weekArray of calendarArray; let i = index">
+    <week [weekArray]="calendarArray[i]"></week>
   </div>
 </div>

@@ -9,14 +9,11 @@ import { CalendarService } from '../calendar.service';
 export class WeekComponent implements OnInit {
 
     @Input() weekID: number;
-    weekArray = [];
+    @Input() weekArray;
 
     constructor(private elementRef: ElementRef, private calendarService: CalendarService) { }
 
     ngOnInit() {
-        this.weekArray = this.calendarService.dateArray[this.weekID];
-        this.weekArray.shift();
-        this.weekArray.pop()
     }
 
     onWeekClick(event) {

@@ -1,17 +1,10 @@
 .frame {
   margin-top: -40px;
   width: 204px;
-  height: 150px;
+  height: 160px;
   border: solid;
   border-color: #0061b0;
   text-align: center;
-}
-
-.headerCalendar {
-  width: 200px;
-  height: 20px;
-  background-color: #0061b0;
-  color: white;
 }
 
 .week{
@@ -27,4 +20,22 @@
 .container{
   padding-top: 1px;
 }
+
+.row{
+  text-align: center;
+}
+
+mat-toolbar {
+  padding: 5px;
+  width: 200px;
+  height: 25px;
+  background-color: #0061b0;
+  color: white;
+  justify-content: center;
+}
+
+:focus {
+  outline: 0 !important;
+}
+
 
