@@ -19,6 +19,9 @@ export class CalendarEditComponent implements OnInit {
     calendarTitle: string;
     accessCode: string;
     month: string;
+    year;
+    week;
+    private selectedWeekRange;
 
     constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private route: ActivatedRoute, private elementRef: ElementRef, private calendarService: CalendarService) { }
 
@@ -47,6 +50,10 @@ export class CalendarEditComponent implements OnInit {
 
     })
       this.month = this.calendarService.getMonth();
+      this.year = this.calendarService.year;
+      this.calendarService.selectedWeekRange.subscribe(resData => {
+          this.selectedWeekRange = resData;
+      });
   }
 
     onCreatePost(calendarData) {

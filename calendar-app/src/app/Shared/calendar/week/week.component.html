@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="week row" (click)="onWeekClick($event)">
+<div class="container" [ngStyle]="{'background-color': isSelected ? 'floralwhite' : 'aliceblue'}">
+  <div class="week row" [id]="weekID" (click)="onWeekClick($event)">
     <div *ngFor="let day of weekArray">
       <div class="cell">
         <span>{{ day }}</span>

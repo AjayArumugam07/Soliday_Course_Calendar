@@ -9,15 +9,20 @@ import { CalendarService } from '../calendar.service';
 export class WeekComponent implements OnInit {
 
     @Input() weekID: number;
+    @Input() isSelected: boolean;
     @Input() weekArray;
 
     constructor(private elementRef: ElementRef, private calendarService: CalendarService) { }
 
     ngOnInit() {
+        this.calendarService.selectedWeek.subscribe(resData => {
+            this.isSelected = resData[this.weekID];
+            
+        })
     }
 
     onWeekClick(event) {
-        this.calendarService.highlightWeek(event);
+        this.calendarService.highlightWeek(event, this.weekArray);
     }
 
 }

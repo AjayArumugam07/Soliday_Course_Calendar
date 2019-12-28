@@ -9,6 +9,6 @@
     </button>
   </mat-toolbar>
   <div class="container" *ngFor="let weekArray of calendarArray; let i = index">
-    <week [weekArray]="calendarArray[i]"></week>
+    <week [weekArray]="calendarArray[i]" [weekID]="i"></week>
   </div>
 </div>
