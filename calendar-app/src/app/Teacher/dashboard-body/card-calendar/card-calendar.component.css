@@ -12,9 +12,13 @@ mat-icon {
   padding: 25px;
 }
 
-button {
+.title {
+  text-align: center;
 }
 
-.title{
-  text-align: center;
+.title h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #13293D;
+
 }

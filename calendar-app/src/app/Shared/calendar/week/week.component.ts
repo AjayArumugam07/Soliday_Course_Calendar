@@ -17,7 +17,6 @@ export class WeekComponent implements OnInit {
     ngOnInit() {
         this.calendarService.selectedWeek.subscribe(resData => {
             this.isSelected = resData[this.weekID];
-            
         })
     }
 

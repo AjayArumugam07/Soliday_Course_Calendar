@@ -16,7 +16,7 @@ export class CalendarComponent implements OnInit {
     constructor(private calendarService: CalendarService) { }
 
     ngOnInit() {
-        this.year = this.calendarService.year;
+        this.year = this.calendarService.year.value;
         this.month = this.calendarService.getMonth();
         this.calendarArray = this.calendarService.dateArray;
     }
@@ -24,12 +24,12 @@ export class CalendarComponent implements OnInit {
     onNextMonth() {
         this.calendarService.nextMonth();
         this.month = this.calendarService.getMonth();
-        this.year = this.calendarService.year;
+        this.year = this.calendarService.year.value;
     }
 
     onPreviousMonth() {
         this.calendarService.previousMonth();
         this.month = this.calendarService.getMonth();
-        this.year = this.calendarService.year;
+        this.year = this.calendarService.year.value;
     }
 }

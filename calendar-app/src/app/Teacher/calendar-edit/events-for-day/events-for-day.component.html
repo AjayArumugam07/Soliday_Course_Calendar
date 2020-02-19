@@ -7,7 +7,7 @@
            *ngFor="let controls of eventsInDay.get(day + 'Events.' + eventType).controls; let i = index">
         <div class="row"
              [formGroupName]="day + 'Events'">
-          <div [formArrayName]="eventType"
+          <div [formArrayName]="eventType"   
                class="col-md-12">
             <mat-toolbar>
               <button mat-icon-button (click)="deleteTextArea($event)" [id]="day + '_' + eventType + '_' + i">

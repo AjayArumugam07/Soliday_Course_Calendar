@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { throwError } from 'rxjs';
 import { CreateCalendarComponent } from './create-calendar/create-calendar.component';
+import { LocalStoargeService } from '../../Shared/local-stoarge.service';
 
 @Component({
   selector: 'dashboard-body',
@@ -18,7 +19,7 @@ export class DashboardBodyComponent implements OnInit {
     ngOnInit() {
         this.getCalendar();
     }
-    constructor(private elementRef: ElementRef, private http: HttpClient, private authService: AuthService, private dialog: MatDialog) {}
+    constructor(private elementRef: ElementRef, private http: HttpClient, private authService: AuthService, private dialog: MatDialog, private localStorage: LocalStoargeService) { }
 
     ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'aliceblue';
@@ -27,7 +28,8 @@ export class DashboardBodyComponent implements OnInit {
     pushCalendar(title: string, accessCode: string) {
         this.http.put('https://app-calendar-65dc1.firebaseio.com/calendarInformation/' + this.authService.user.value.id + '/accessCode/' + accessCode + '/.json?auth=' + this.authService.user.value.token,
             {
-                title: title
+                title: title,
+                "key": this.localStorage.generateKey()
             }
         ).subscribe(responseData => {
             this.getCalendar();
